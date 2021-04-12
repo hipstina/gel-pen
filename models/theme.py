@@ -6,7 +6,7 @@ from datetime import datetime  # optional
 class Theme(db.Model):
     __tablename__: 'themes'
     id = db.Column(db.Integer, primaryKey=True)
-    css_styles: db.Column(db.Text)
+    css_styles: db.Column(db.Text)  # db.JSON
     theme_name: db.Column(db.String(80))
     likes: db.Column(db.Integer(12))
     theme_description: db.Column(db.String(255))
