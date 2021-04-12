@@ -15,7 +15,7 @@ class Theme(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.utcnow)
 
-    def __init__(css_styles, theme_name, likes, theme_description):
+    def __init__(self, css_styles, theme_name, likes, theme_description):
         self.css_styles = css_styles
         self.theme_name = theme_name
         self.likes = likes
