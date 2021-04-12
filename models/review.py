@@ -36,7 +36,7 @@ def create(self):
 
 
 @classmethod  # find all reviews by theme_id
-def find_all(cls):
+def find_all(cls, theme_id):
     return Review.query.all()
 
 

@@ -45,7 +45,7 @@ def find_all(cls):
 
 
 @classmethod  # find all themes by user_id
-def find_by_user(cls):
+def find_by_user(cls, user_id):
     return Theme.query.all()
 
 
