@@ -8,7 +8,7 @@ from models.db import db
 class Login(Resource):
     def post(self):
         data = request.get_json()
-        user = User.find_by_id(data['id'])
+        user = User.find_by_username(data['username'])
         if not user:
             return {"msg": "user not found"}, 404
         else:
