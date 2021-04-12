@@ -4,13 +4,13 @@ from datetime import datetime  # optional
 
 
 class Theme(db.Model):
-    __tablename__: 'themes'
+    __tablename__ = 'themes'
     id = db.Column(db.Integer, primaryKey=True)
-    css_styles: db.Column(db.Text)  # db.JSON
-    theme_name: db.Column(db.String(80))
-    likes: db.Column(db.Integer(12))
-    theme_description: db.Column(db.String(255))
-    created_at = db.Column(b.DateTime, nullable=False,
+    css_styles = db.Column(db.Text)  # db.JSON
+    theme_name = db.Column(db.String(80))
+    likes = db.Column(db.Integer(12))
+    theme_description = db.Column(db.String(255))
+    created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.utcnow)
@@ -39,16 +39,16 @@ def create(self):
     return self
 
 
-@classmethod
+@ classmethod
 def find_all(cls):
     return Theme.query.all()
 
 
-@classmethod  # find all themes by user_id
+@ classmethod  # find all themes by user_id
 def find_by_user(cls, user_id):
     return Theme.query.all()
 
 
-@classmethod
+@ classmethod
 def find_by_id(cls, id):
     return Theme.query.filter_by(id=id).first()

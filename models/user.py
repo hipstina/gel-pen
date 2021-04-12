@@ -8,7 +8,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
     password_digest = db.Column(db.String(255))
-    created_at = db.Column(b.DateTime, nullable=False,
+    created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.utcnow)
