@@ -5,10 +5,10 @@ from datetime import datetime  # optional
 
 class Theme(db.Model):
     __tablename__ = 'themes'
-    id = db.Column(db.Integer, primaryKey=True)
+    id = db.Column(db.Integer, primary_key=True)
     css_styles = db.Column(db.Text)  # db.JSON
     theme_name = db.Column(db.String(80))
-    likes = db.Column(db.Integer(12))
+    likes = db.Column(db.Integer)
     theme_description = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
@@ -32,23 +32,19 @@ class Theme(db.Model):
             "updated_at": str(self.updated_at)
         }
 
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
 
-def create(self):
-    db.session.add(self)
-    db.session.commit()
-    return self
+    @ classmethod
+    def find_all(cls):
+        return Theme.query.all()
 
+    @ classmethod  # find all themes by user_id
+    def find_by_user(cls, user_id):
+        return Theme.query.all()
 
-@ classmethod
-def find_all(cls):
-    return Theme.query.all()
-
-
-@ classmethod  # find all themes by user_id
-def find_by_user(cls, user_id):
-    return Theme.query.all()
-
-
-@ classmethod
-def find_by_id(cls, id):
-    return Theme.query.filter_by(id=id).first()
+    @ classmethod
+    def find_by_id(cls, id):
+        return Theme.query.filter_by(id=id).first()

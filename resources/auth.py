@@ -2,12 +2,13 @@ from flask_restful import Resource
 from flask import request
 from models.user import User
 from middleware import create_token, gen_password, strip_token, read_token, compare_password
+from models.db import db
 
 
 class Login(Resource):
     def post(self):
         data = request.get_json()
-        user = User.find_one(data['id'])
+        user = User.find_by_id(data['id'])
         if not user:
             return {"msg": "user not found"}, 404
         else:
@@ -37,5 +38,7 @@ class Register(Resource):
             "password_digest": gen_password(data['password'])
         }
         user = User(**params)
+        print("NEW USER INSTANCE! ", user.password_digest)
         user.create()
+        print("NEW USER CREATED! ", user)
         return user.json(), 201
