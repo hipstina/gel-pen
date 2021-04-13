@@ -12,11 +12,22 @@ class Reviews(Resource):
         data = Review.find_all()
         return data
 
+    # def post(self):
+    #     data = request.get_json()
+    #     review = Review(**data)
+    #     review.create()
+    #     return review.json(), 201
+
     def post(self):
-        data = request.get_json()
-        review = Review(**data)
-        review.create()
-        return review.json(), 201
+        token = strip_token(request)
+        if token:
+            payload = read_token(token)
+            if payload != "Signature Invalid" and payload != "Invalid Token":
+                data = request.get_json()
+                review = Review(**data)
+                review.create()
+                return review.json(), 201
+        return 'Unauthorized', 401
 
 
 class OneReview(Resource):

@@ -14,14 +14,13 @@ class Themes(Resource):
 
     def post(self):
         token = strip_token(request)
-        print("TOKEN for THEME post", token)
         if token:
             payload = read_token(token)
             if payload != "Signature Invalid" and payload != "Invalid Token":
                 data = request.get_json()
                 theme = Theme(**data)
                 theme.create()
-                return {"msg": 'Theme created', 'payload': theme.json()}
+                return theme.json(), 201
         return 'Unauthorized', 401
 
 
