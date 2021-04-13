@@ -26,7 +26,7 @@ export const LoginUserByUsername = (req) => async (dispatch) => {
     const user = await __LoginUserByUsername(req)
     dispatch({
       type: SUBMIT_LOGIN,
-      payload: user
+      payload: user // maybe can return a boolean
     })
   } catch (err) {
     console.log(err)

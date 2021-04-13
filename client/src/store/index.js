@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {
+  AuthReducer,
   UserReducer,
   ThemeReducer,
   ReviewReducer,
@@ -17,6 +18,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const store = createStore(
   combineReducers({
+    authState: AuthReducer,
     userState: UserReducer,
     themeState: ThemeReducer,
     reviewState: ReviewReducer,

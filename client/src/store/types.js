@@ -9,6 +9,7 @@ export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_THEMES_BY_USER = 'GET_THEMES_BY_USER'
 export const GET_REVIEWSTHEMES_BY_USER = 'GET_REVIEWSTHEMES_BY_USER'
+export const TARGET_USER_ID = 'TARGET_USER_ID'
 
 /*  THEME TYPES */
 export const GET_THEMES = 'GET_THEMES'
