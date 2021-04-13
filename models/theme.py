@@ -18,10 +18,10 @@ class Theme(db.Model):
         'users.id'), nullable=False)  # FK
     user = db.relationship("User", backref=db.backref(
         'user', lazy=True))  # association
-    review = db.relationship("Review", cascade='all', backref=db.backref(
-        'review', lazy=True))  # association
+    reviews = db.relationship("Review", cascade='all', backref=db.backref(
+        'reviews', lazy=True))  # association
 
-    def __init__(self, css_styles, theme_name, likes, theme_description):
+    def __init__(self, css_styles, theme_name, likes, theme_description, user_id):
         self.css_styles = css_styles
         self.theme_name = theme_name
         self.likes = likes
@@ -60,6 +60,6 @@ class Theme(db.Model):
     @classmethod
     def include_reviews(cls, theme_id):
         theme = Theme.query.options(joinedload(
-            'review')).filter_by(id=theme_id).first()
-        reviews = [r.json() for r in theme.review]
+            'reviews')).filter_by(id=theme_id).first()
+        reviews = [r.json() for r in theme.reviews]
         return {**theme.json(), "reviews": reviews}

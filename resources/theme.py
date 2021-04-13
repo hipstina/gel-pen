@@ -19,20 +19,28 @@ class Themes(Resource):
 
 
 class OneTheme(Resource):
-    def get(self, theme_id):
-        theme = Theme.find_by_id(theme_id)
+    def get(self, id):
+        theme = Theme.find_by_id(id)
         return theme.json()
 
     def delete(self, id):
-        theme = Theme.find_by_id(theme_id)
+        theme = Theme.find_by_id(id)
         db.session.delete(theme)
         db.session.commit()
         return{"msg": 'Theme deleted', 'payload': theme.id}
 
-    def put(self, theme_id):
-        theme = Theme.find_by_id(theme_id)
+    def put(self, id):
+        theme = Theme.find_by_id(id)
         data = request.get_json()
         for key in data:
             setattr(theme, key, data[key])
         db.session.commit()
         return theme.json()
+
+
+class ReviewsByTheme(Resource):
+    def get(self, id):
+        print('themereviews')
+        themereviews = Theme.include_reviews(id)
+
+        return themereviews
