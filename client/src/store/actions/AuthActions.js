@@ -9,9 +9,9 @@ import {
   ADD_LOGIN
 } from '../types'
 
-export const RegisterUser = () => async (dispatch) => {
+export const RegisterUser = (req) => async (dispatch) => {
   try {
-    const user = await __RegisterUser()
+    const user = await __RegisterUser(req)
     dispatch({
       type: SUBMIT_REGISTRATION,
       payload: user
@@ -21,9 +21,9 @@ export const RegisterUser = () => async (dispatch) => {
   }
 }
 
-export const LoginUserByUsername = () => async (dispatch) => {
+export const LoginUserByUsername = (req) => async (dispatch) => {
   try {
-    const user = await __LoginUserByUsername()
+    const user = await __LoginUserByUsername(req)
     dispatch({
       type: SUBMIT_LOGIN,
       payload: user
