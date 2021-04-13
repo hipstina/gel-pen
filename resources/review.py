@@ -12,12 +12,6 @@ class Reviews(Resource):
         data = Review.find_all()
         return data
 
-    # def post(self):
-    #     data = request.get_json()
-    #     review = Review(**data)
-    #     review.create()
-    #     return review.json(), 201
-
     def post(self):
         token = strip_token(request)
         if token:
