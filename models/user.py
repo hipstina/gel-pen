@@ -60,6 +60,7 @@ class User(db.Model):
         user = User.query.options(joinedload(
             'theme').joinedload(
             'reviews')).filter_by(id=id).all()
+
         themes = [u.theme for u in user]
         for theme in themes:
             for t in theme:
