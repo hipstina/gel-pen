@@ -52,3 +52,9 @@ class OneUser(Resource):
             return user.json()
         except:
             return{"msg": 'User not updated'}
+
+
+class ThemesByUser(Resource):
+    def get(self, id):
+        userthemes = User.include_themes(id)
+        return userthemes

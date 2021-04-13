@@ -35,10 +35,8 @@ class User(db.Model):
 
     @classmethod
     def find_all(cls):
-        # try:
         users = User.query.all()
         return [u.json() for u in users]
-        # except:
         # print("Error finding all users")
 
     @classmethod
@@ -53,6 +51,6 @@ class User(db.Model):
     @classmethod
     def include_themes(cls, id):
         user = User.query.options(joinedload(
-            'user_theme')).filter_by(id=theme_id).first()
+            'theme')).filter_by(id=id).first()
         themes = [t.json() for t in user.theme]
         return {**user.json(), "themes": themes}
