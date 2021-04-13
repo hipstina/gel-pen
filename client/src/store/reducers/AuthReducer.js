@@ -15,7 +15,8 @@ const iState = {
     password: ''
   },
   reg_submitted: false,
-  login_submitted: false
+  login_submitted: false,
+  authenticated: false
 }
 
 const AuthReducer = (state = iState, action) => {
@@ -28,7 +29,8 @@ const AuthReducer = (state = iState, action) => {
     case SUBMIT_LOGIN:
       return {
         ...state,
-        login_submitted: !state.login_submitted
+        login_submitted: !state.login_submitted,
+        authenticated: action.payload
       }
     case ADD_REGISTRATION:
       return {
