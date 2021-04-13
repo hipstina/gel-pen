@@ -65,4 +65,7 @@ class User(db.Model):
             for t in theme:
                 print("a theme", t.json())
                 reviews = [r.json() for r in t.reviews]
-                return {"user": {"id": user[0].id, "username": user[0].username}, "theme": t.json(), "reviews": reviews}
+                return {
+                    "user": {**user[0].json()},
+                    "theme": t.json(), "reviews": reviews
+                }
