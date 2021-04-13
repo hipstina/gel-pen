@@ -18,7 +18,7 @@ export const __GetAllThemes = async () => {
   }
 }
 
-export const __GetThemById = async (id) => {
+export const __GetThemeById = async (id) => {
   try {
     const res = await Client.get(`/themes/${id}`)
     return res.data
