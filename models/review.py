@@ -18,7 +18,7 @@ class Review(db.Model):
     theme = db.relationship("Theme", backref=db.backref(
         'theme', lazy=True))  # association
 
-    def __init__(self, title, content):
+    def __init__(self, title, content, theme_id):
         self.title = title
         self.content = content
         self.theme_id = theme_id
@@ -39,8 +39,9 @@ class Review(db.Model):
         return self
 
     @classmethod  # find all reviews by theme_id
-    def find_all(cls, theme_id):
-        return Review.query.all()
+    def find_all(cls):
+        reviews = Review.query.all()
+        return [r.json() for r in reviews]
 
     @classmethod
     def find_by_id(cls, id):
