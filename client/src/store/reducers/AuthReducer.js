@@ -6,14 +6,8 @@ import {
 } from '../types'
 
 const iState = {
-  registration: {
-    username: '',
-    password: ''
-  },
-  login: {
-    username: '',
-    password: ''
-  },
+  username: '',
+  password: '',
   reg_submitted: false,
   login_submitted: false,
   authenticated: false
@@ -31,22 +25,17 @@ const AuthReducer = (state = iState, action) => {
         ...state,
         login_submitted: !state.login_submitted,
         authenticated: action.payload
+        // TODO: reset login
       }
     case ADD_REGISTRATION:
       return {
         ...state,
-        registration: {
-          ...state.registration,
-          [action.payload.name]: action.payload.input
-        }
+        [action.payload.name]: action.payload.input
       }
     case ADD_LOGIN:
       return {
         ...state,
-        login: {
-          ...state.login,
-          [action.payload.name]: action.payload.input
-        }
+        [action.payload.name]: action.payload.input
       }
     default:
       return { ...state }
