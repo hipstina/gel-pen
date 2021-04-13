@@ -38,7 +38,5 @@ class Register(Resource):
             "password_digest": gen_password(data['password'])
         }
         user = User(**params)
-        print("NEW USER INSTANCE! ", user.password_digest)
-        user.create()
-        print("NEW USER CREATED! ", user)
+        user.create()  # TODO: Add error handling for username already existing
         return user.json(), 201
