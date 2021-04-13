@@ -3,6 +3,7 @@ from flask import request
 from models.user import User
 from models.db import db
 from sqlalchemy.orm import joinedload
+from middleware import strip_token, read_token
 
 
 class Users(Resource):

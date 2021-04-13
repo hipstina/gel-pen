@@ -16,7 +16,6 @@ class Reviews(Resource):
         data = request.get_json()
         review = Review(**data)
         review.create()
-        print('SUCCESS creating review')
         return review.json(), 201
 
 
@@ -31,7 +30,6 @@ class OneReview(Resource):
             payload = read_token(token)
             if payload != "Signature Invalid" and payload != "Invalid Token":
                 review = Review.find_by_id(id)
-                print("review", review.theme_id)
                 # check that id of authenticated user matches theme_id's user_id
                 theme = Theme.find_by_id(review.theme_id)
                 if theme.user_id == payload['id']:
