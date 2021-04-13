@@ -13,10 +13,15 @@ class Review(db.Model):
                            default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.utcnow)
+    theme_id = db.Column(db.Integer, db.ForeignKey(
+        'themes.id'), nullable=False)  # FK
+    theme = db.relationship("Theme", backref=db.backref(
+        'theme', lazy=True))  # association
 
     def __init__(self, title, content):
         self.title = title
         self.content = content
+        self.theme_id = theme_id
 
     def json(self):
         return {
@@ -24,7 +29,8 @@ class Review(db.Model):
             "title": self.title,
             "content": self.content,
             "created_at": str(self.created_at),
-            "updated_at": str(self.updated_at)
+            "updated_at": str(self.updated_at),
+            "theme_id": self.theme_id
         }
 
     def create(self):

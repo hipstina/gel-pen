@@ -12,6 +12,8 @@ class User(db.Model):
                            default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.utcnow)
+    theme = db.relationship("Theme", cascade='all', backref=db.backref(
+        'user_theme', lazy=True))  # association
 
     def __init__(self, username, password_digest):
         self.username = username
@@ -33,7 +35,11 @@ class User(db.Model):
 
     @classmethod
     def find_all(cls):
-        return User.query.all()
+        # try:
+        users = User.query.all()
+        return [u.json() for u in users]
+        # except:
+        # print("Error finding all users")
 
     @classmethod
     def find_by_id(cls, id):
@@ -43,3 +49,10 @@ class User(db.Model):
     def find_by_username(cls, username):
         user = User.query.filter_by(username=username).first()
         return user
+
+    @classmethod
+    def include_themes(cls, id):
+        user = User.query.options(joinedload(
+            'user_theme')).filter_by(id=theme_id).first()
+        themes = [t.json() for t in user.theme]
+        return {**user.json(), "themes": themes}

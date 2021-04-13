@@ -14,12 +14,19 @@ class Theme(db.Model):
                            default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'users.id'), nullable=False)  # FK
+    user = db.relationship("User", backref=db.backref(
+        'user', lazy=True))  # association
+    review = db.relationship("Review", cascade='all', backref=db.backref(
+        'review', lazy=True))  # association
 
     def __init__(self, css_styles, theme_name, likes, theme_description):
         self.css_styles = css_styles
         self.theme_name = theme_name
         self.likes = likes
         self.theme_description = theme_description
+        self.user_id = user_id
 
     def json(self):
         return {
@@ -29,7 +36,8 @@ class Theme(db.Model):
             "likes": self.likes,
             "theme_description": self.theme_description,
             "created_at": str(self.created_at),
-            "updated_at": str(self.updated_at)
+            "updated_at": str(self.updated_at),
+            "user_id": self.user_id
         }
 
     def create(self):
@@ -37,14 +45,21 @@ class Theme(db.Model):
         db.session.commit()
         return self
 
-    @ classmethod
+    @classmethod
     def find_all(cls):
         return Theme.query.all()
 
-    @ classmethod  # find all themes by user_id
+    @classmethod  # find all themes by user_id
     def find_by_user(cls, user_id):
         return Theme.query.all()
 
-    @ classmethod
+    @classmethod
     def find_by_id(cls, id):
         return Theme.query.filter_by(id=id).first()
+
+    @classmethod
+    def include_reviews(cls, theme_id):
+        theme = Theme.query.options(joinedload(
+            'review')).filter_by(id=theme_id).first()
+        reviews = [r.json() for r in theme.review]
+        return {**theme.json(), "reviews": reviews}
