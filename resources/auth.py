@@ -22,12 +22,12 @@ class Login(Resource):
             token = create_token(payload)
         return {"user": payload, "token": token}
 
-    def get(self):  # use this to protect your routes; load middleware
-        token = strip_token(request)
-        if token:
-            payload = read_token(token)
-            return payload
-        return 'Unauthorized', 401
+    # def get(self):  # use this to protect your routes; load middleware
+    #     token = strip_token(request)
+    #     if token:
+    #         payload = read_token(token)
+    #         return payload
+    #     return 'Unauthorized', 401
 
 
 class Register(Resource):

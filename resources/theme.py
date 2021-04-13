@@ -29,7 +29,7 @@ class OneTheme(Resource):
         theme = Theme.find_by_id(id)
         return theme.json()
 
-    def delete(sefl, id):
+    def delete(self, id):
         token = strip_token(request)
         if token:
             payload = read_token(token)

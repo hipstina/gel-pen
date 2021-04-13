@@ -8,23 +8,13 @@ from middleware import strip_token, read_token
 
 class Users(Resource):
     def get(self):
-        data = User.find_all()
-        print("DATA!!", data)
-        # try:
-        # results = [u.json() for u in data]
-        print('SUCCESS getting all users')
-        return data
-        # return results
-        # except:
-        # return {"msg": "Error getting all users"}
+        return User.find_all()
 
     def post(self):
         data = request.get_json()
-        # try:
         user = User(**data)
         user.create()
         return user.json(), 201
-        # except:
         return {"msg": "Error creating a user"}
 
 
