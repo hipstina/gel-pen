@@ -22,7 +22,6 @@ class Users(Resource):
         # try:
         user = User(**data)
         user.create()
-        print('SUCCESS creating user')
         return user.json(), 201
         # except:
         return {"msg": "Error creating a user"}
@@ -46,8 +45,11 @@ class OneUser(Resource):
         try:
             user = User.find_by_id(id)
             data = request.get_json()
+            allowed = list(user.json().keys())
+            excluded = ["id", "created_at", "updated_at"]
             for key in data:
-                setattr(user, key, data[key])
+                if key in allowed and key not in excluded:
+                    setattr(user, key, data[key])
             db.session.commit()
             return user.json()
         except:
@@ -57,4 +59,10 @@ class OneUser(Resource):
 class ThemesByUser(Resource):
     def get(self, id):
         userthemes = User.include_themes(id)
+        return userthemes
+
+
+class ReviewsThemesByUser(Resource):
+    def get(self, id):
+        userthemes = User.include_themes_reviews(id)
         return userthemes

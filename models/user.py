@@ -54,3 +54,15 @@ class User(db.Model):
             'theme')).filter_by(id=id).first()
         themes = [t.json() for t in user.theme]
         return {**user.json(), "themes": themes}
+
+    @classmethod
+    def include_themes_reviews(cls, id):
+        user = User.query.options(joinedload(
+            'theme').joinedload(
+            'reviews')).filter_by(id=id).all()
+        themes = [u.theme for u in user]
+        for theme in themes:
+            for t in theme:
+                print("a theme", t.json())
+                reviews = [r.json() for r in t.reviews]
+                return {"user": {"id": user[0].id, "username": user[0].username}, "theme": t.json(), "reviews": reviews}

@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from flask_migrate import Migrate
-from resources.user import Users, OneUser, ThemesByUser
+from resources.user import Users, OneUser, ThemesByUser, ReviewsThemesByUser
 from resources.review import Reviews, OneReview
 from resources.theme import Themes, OneTheme, ReviewsByTheme
 from resources.auth import Login, Register
@@ -26,6 +26,7 @@ migrate = Migrate(app, db)
 api.add_resource(Users, '/users')
 api.add_resource(OneUser, '/users/<int:id>')
 api.add_resource(ThemesByUser, '/user/themes/<int:id>')
+api.add_resource(ReviewsThemesByUser, '/user/theme/reviews/<int:id>')
 
 api.add_resource(Reviews, '/themes/reviews')
 api.add_resource(OneReview, '/themes/review/<int:id>')
