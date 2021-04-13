@@ -40,7 +40,5 @@ class OneTheme(Resource):
 
 class ReviewsByTheme(Resource):
     def get(self, id):
-        print('themereviews')
         themereviews = Theme.include_reviews(id)
-
         return themereviews
