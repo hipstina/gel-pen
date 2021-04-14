@@ -8,10 +8,16 @@ import {
 import {
   GET_THEMES,
   GET_THEME_BY_ID,
+  SET_SELECTED_THEME,
   CREATE_THEME,
   INCREMENT_LIKES,
   DELETE_THEME_BY_ID
 } from '../types'
+
+export const SelectedThemeId = (id) => ({
+  type: SET_SELECTED_THEME,
+  payload: id
+})
 
 export const CreateNewTheme = () => async (dispatch) => {
   try {

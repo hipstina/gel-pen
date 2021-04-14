@@ -14,6 +14,7 @@ import {
 export const GetReviewsByTheme = (id) => async (dispatch) => {
   try {
     const reviews = await __GetReviewsByTheme(id)
+    console.log('GetReviewsByTheme res', reviews)
     dispatch({
       type: GET_REVIEWS_BY_THEME,
       payload: reviews

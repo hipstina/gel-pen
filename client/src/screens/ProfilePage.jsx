@@ -4,17 +4,19 @@ import Profile from '../components/Profile'
 import ThemeCard from '../components/ThemeCard'
 import { GetThemesByUser } from '../store/actions/UserActions'
 import { GetReviewsByTheme } from '../store/actions/ReviewActions'
+import { GetThemeById, SelectedThemeId } from '../store/actions/ThemeActions'
 
 const mapStateToProps = (state) => {
   return {
-    userState: state.userState
+    userState: state.userState,
+    themeState: state.themeState
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getThemes: (id) => dispatch(GetThemesByUser(id)),
-    targetTheme: (id) => dispatch(GetReviewsByTheme(id))
+    targetTheme: (id) => dispatch(SelectedThemeId(id))
   }
 }
 
@@ -26,6 +28,7 @@ const ProfilePage = (props) => {
   const targetTheme = (id) => {
     props.targetTheme(id)
     // redirect to them details page
+    props.history.push(`/themes/${id}`)
   }
 
   const renderUserThemes = () => {
@@ -47,9 +50,6 @@ const ProfilePage = (props) => {
     <div>
       ProfilePage
       <Profile />
-      {/* <button onClick={() => props.getThemes(1)}>
-        GET ALL THEMES FOR USER!
-      </button> */}
       {props.userState.selected_user_data
         ? renderUserThemes()
         : 'no themes yet!'}
