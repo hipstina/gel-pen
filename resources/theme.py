@@ -43,8 +43,10 @@ class OneTheme(Resource):
         return 'Unauthorized', 401
 
     def put(self, id):
+        print('!!! theme put id', id)
         theme = Theme.find_by_id(id)
         data = request.get_json()
+
         for key in data:
             setattr(theme, key, data[key])
         db.session.commit()

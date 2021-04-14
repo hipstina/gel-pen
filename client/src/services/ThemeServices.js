@@ -38,7 +38,12 @@ export const __DeleteThemeById = async (id) => {
 
 export const __UpdateLikeCount = async (id, req) => {
   try {
-    const res = await Client.put(`/themes/${id}`, req)
+    console.log('__UpdateLikeCount id + req', id, req)
+    const theme = {
+      likes: req
+    }
+    const res = await Client.put(`/themes/${id}`, theme)
+    console.log(res)
     return res.data
   } catch (err) {
     console.log(err)

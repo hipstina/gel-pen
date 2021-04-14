@@ -2,7 +2,6 @@ import {
   GET_THEMES,
   GET_THEME_BY_ID,
   CREATE_THEME,
-  INCREMENT_LIKES,
   DELETE_THEME_BY_ID,
   SET_SELECTED_THEME
 } from '../types'
@@ -23,8 +22,14 @@ const ThemeReducer = (state = iState, action) => {
       return { ...state, theme_by_id: action.payload }
     case CREATE_THEME:
       return { ...state, themes: action.payload }
-    case INCREMENT_LIKES:
-      return { ...state, themes: action.payload }
+    // case INCREMENT_LIKES:
+    //   const targetId = state.themes.filter(
+    //     (theme) => theme.id === action.payload
+    //   )
+    //   console.log('targetId', targetId)
+    //   // targetId[0].likes++
+
+    //   return { ...state }
     case DELETE_THEME_BY_ID:
       return { ...state, themes: action.payload }
     default:

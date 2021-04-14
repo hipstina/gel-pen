@@ -33,10 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const ThemeDetails = (props) => {
-  console.log('selecte theme id', props.themeState.selected_theme_id)
-  console.log('fetched them by id', props.themeState.theme_by_id)
   useEffect(() => {
-    console.log('USEEFFECT on THEMEDETAIL')
     props.getTheme(props.themeState.selected_theme_id)
   }, [])
 
