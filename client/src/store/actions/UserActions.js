@@ -23,21 +23,21 @@ export const GetAllUsers = () => async (dispatch) => {
   }
 }
 
-export const GetUserById = () => async (dispatch) => {
-  try {
-    const user = await __GetUserById()
-    dispatch({
-      type: GET_USER_BY_ID,
-      payload: user
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
+// export const GetUserById = () => async (dispatch) => {
+//   try {
+//     const user = await __GetUserById()
+//     dispatch({
+//       type: GET_USER_BY_ID,
+//       payload: user
+//     })
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
 
-export const GetThemesByUser = () => async (dispatch) => {
+export const GetThemesByUser = (id) => async (dispatch) => {
   try {
-    const user_themes = await __GetThemesByUser()
+    const user_themes = await __GetThemesByUser(id)
     dispatch({
       type: GET_THEMES_BY_USER,
       payload: user_themes

@@ -21,8 +21,8 @@ const UserReducer = (state = iState, action) => {
       return { ...state, selected_user_id: action.payload }
     // case GET_USER_BY_ID: //! duplicate
     //   return { ...state, selected_user_data: action.payload }
-    // case GET_THEMES_BY_USER: //! duplicate
-    //   return { ...state, selected_user_data: action.payload }
+    case GET_THEMES_BY_USER: //! duplicate
+      return { ...state, selected_user_data: action.payload }
     case GET_REVIEWSTHEMES_BY_USER:
       return { ...state, selected_user_data: action.payload }
     default:

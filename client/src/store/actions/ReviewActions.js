@@ -11,7 +11,7 @@ import {
   ADD_REVIEW_INPUT
 } from '../types'
 
-export const RegisterUser = (id) => async (dispatch) => {
+export const GetReviewsByTheme = (id) => async (dispatch) => {
   try {
     const reviews = await __GetReviewsByTheme(id)
     dispatch({

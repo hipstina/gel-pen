@@ -1,12 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import {
-  AuthReducer,
-  UserReducer,
-  ThemeReducer,
-  ReviewReducer,
-  EditorReducer
-} from './reducers'
+import AuthReducer from '../store/reducers/AuthReducer'
+import UserReducer from '../store/reducers/UserReducer'
+import ThemeReducer from '../store/reducers/ThemeReducer'
+import ReviewReducer from '../store/reducers/ReviewReducer'
+import EditorReducer from '../store/reducers/EditorReducer'
+
 import thunk from 'redux-thunk'
 
 let middleware
