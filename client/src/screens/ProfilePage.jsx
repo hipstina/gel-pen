@@ -3,12 +3,7 @@ import { connect } from 'react-redux'
 import Profile from '../components/Profile'
 import ThemeCard from '../components/ThemeCard'
 import { GetThemesByUser } from '../store/actions/UserActions'
-import { GetReviewsByTheme } from '../store/actions/ReviewActions'
-import {
-  GetThemeById,
-  SelectedThemeId,
-  UpdateLikeCount
-} from '../store/actions/ThemeActions'
+import { SelectedThemeId, UpdateLikeCount } from '../store/actions/ThemeActions'
 
 const mapStateToProps = (state) => {
   return {

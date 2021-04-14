@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import {
-  GetThemeById,
-  UpdateLikeCount,
-  DeleteThemeById
-} from '../store/actions/ThemeActions'
+import { UpdateLikeCount, DeleteThemeById } from '../store/actions/ThemeActions'
 import {
   GetReviewsByTheme,
   DeleteReviewById,
@@ -23,8 +19,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTheme: (id) => dispatch(GetReviewsByTheme(id)),
     deleteTheme: (id) => dispatch(DeleteThemeById(id)),
-    incrementLikes: (id, likes) => dispatch(UpdateLikeCount(id, likes)),
-    getReview: (id) => dispatch(GetReviewsByTheme(id)),
     deleteReview: (id) => dispatch(DeleteReviewById(id)),
     addReviewInput: (inputName, input) =>
       dispatch(AddReviewInput(inputName, input)),

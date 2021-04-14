@@ -58,8 +58,7 @@ export const GetThemeById = (id) => async (dispatch) => {
 export const UpdateLikeCount = (id, req) => async (dispatch) => {
   try {
     let likes = req + 1
-    const theme = await __UpdateLikeCount(id, likes)
-    console.log('UpdateLikeCount id', id)
+    await __UpdateLikeCount(id, likes)
     dispatch({
       type: INCREMENT_LIKES,
       payload: id
