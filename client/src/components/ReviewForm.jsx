@@ -28,7 +28,7 @@ const ReviewForm = (props) => {
         {/* TODO: CALCULATE CURRENT USER TO AUTOFILL USER FIELDS */}
         <input type="text" placeholder="current_user avatar" />
         <input type="text" placeholder="current_user username" />
-        <input type="text" value="" placeholder="what a super cool theme!" />
+        <input type="text" placeholder="what a super cool theme!" />
         <input type="submit" value="Submit Review" />
       </form>
     </div>

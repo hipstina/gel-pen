@@ -21,7 +21,6 @@ export const __GetUserById = async (id) => {
 export const __GetThemesByUser = async (id) => {
   try {
     const res = await Client.get(`/user/themes/${id}`)
-    console.log('__GetThemesByUser res', res)
     return res.data
   } catch (err) {
     console.log(err)

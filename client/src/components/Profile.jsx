@@ -17,8 +17,17 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const Profile = () => {
-  return <div>Profile</div>
+const Profile = (props) => {
+  return (
+    <div>
+      Profile
+      {/* 
+      CURRENT USER PROFILE: 
+      - AVATAR
+      - USERNAME
+      */}
+    </div>
+  )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
