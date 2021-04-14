@@ -7,10 +7,8 @@ import ReviewForm from '../components/ReviewForm'
 const ThemePage = () => {
   return (
     <div>
-      ThemePage
       <ThemeDetail />
       <Interactions />
-      <ReviewCard />
       <ReviewForm />
     </div>
   )

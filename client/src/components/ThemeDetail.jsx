@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import ReviewCard from '../components/ReviewCard'
 import { connect } from 'react-redux'
 import { UpdateLikeCount, DeleteThemeById } from '../store/actions/ThemeActions'
 import {
@@ -31,6 +32,20 @@ const ThemeDetails = (props) => {
     props.getTheme(props.themeState.selected_theme_id)
   }, [])
 
+  const renderReviews = () => {
+    return props.reviewState.reviews_by_theme.reviews ? (
+      props.reviewState.reviews_by_theme.reviews.map((review, idx) => (
+        <ReviewCard
+          key={idx}
+          review_title={review.title}
+          review_content={review.content}
+        />
+      ))
+    ) : (
+      <p>'No review data to render'</p>
+    )
+  }
+
   return (
     <div>
       ThemeDetails
@@ -41,6 +56,11 @@ const ThemeDetails = (props) => {
             <em>{props.reviewState.reviews_by_theme.theme_description}</em>
           </p>
           <p>Likes {props.reviewState.reviews_by_theme.likes}</p>
+          <div>
+            {props.reviewState.reviews_by_theme.reviews
+              ? renderReviews()
+              : 'Be the first to review!'}
+          </div>
         </div>
       ) : (
         <p>"No details about this theme"</p>
