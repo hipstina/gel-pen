@@ -7,7 +7,11 @@ import {
 } from '../types'
 
 const iState = {
-  review_input: '',
+  review_input: {
+    title: '',
+    content: '',
+    theme_id: ''
+  },
   reviews_by_theme: [],
   review_submitted: false
 }
@@ -17,13 +21,24 @@ const ReviewReducer = (state = iState, action) => {
     case GET_REVIEWS_BY_THEME:
       return { ...state, reviews_by_theme: action.payload }
     case CREATE_REVIEW:
-      return { ...state, reviews_by_theme: action.payload }
+      state.reviews_by_theme.reviews.push(action.payload)
+      console.log(
+        'review reducer updated reviews',
+        state.reviews_by_theme.reviews
+      )
+      return { ...state }
     case DELETE_REVIEW:
       return { ...state, reviews_by_theme: action.payload }
     case REVIEW_SUBMITTED:
       return { ...state, review_submitted: !state.review_submitted }
     case ADD_REVIEW_INPUT:
-      return { ...state, review_input: action.payload }
+      return {
+        ...state,
+        review_input: {
+          ...state.review_input,
+          [action.payload.name]: action.payload.input
+        }
+      }
     default:
       return { ...state }
   }

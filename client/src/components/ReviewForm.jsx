@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {
   DeleteReviewById,
   AddReviewInput,
-  ReviewSubmitted
+  ReviewSubmitted,
+  CreateReview
 } from '../store/actions/ReviewActions'
 
 const mapStateToProps = (state) => {
@@ -17,19 +18,53 @@ const mapDispatchToProps = (dispatch) => {
     deleteReview: (id) => dispatch(DeleteReviewById(id)),
     addReviewInput: (inputName, input) =>
       dispatch(AddReviewInput(inputName, input)),
+    createReview: (input) => dispatch(CreateReview(input)),
     reviewSubmit: () => dispatch(ReviewSubmitted())
   }
 }
 
 const ReviewForm = (props) => {
+  const handleChangeReview = (e) => {
+    props.addReviewInput(e.target.name, e.target.value)
+  }
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault()
+    const review = {
+      title: props.reviewState.review_input.title,
+      content: props.reviewState.review_input.content,
+      theme_id: props.match.params.theme_id
+    }
+    props.createReview(review)
+    props.reviewSubmit()
+  }
+
   return (
     <div>
-      <form>
-        {/* TODO: CALCULATE CURRENT USER TO AUTOFILL USER FIELDS */}
-        <input type="text" placeholder="current_user avatar" />
-        <input type="text" placeholder="current_user username" />
-        <input type="text" placeholder="what a super cool theme!" />
+      <h3>Submit a review:</h3>
+      <form onSubmit={(e) => handleSubmitReview(e)}>
+        {/* TODO: CALCULATE CURRENT USER TO AUTOFILL AUTHENTICATED USER */}
+        <input type="hidden" placeholder="current_user avatar" />
+        <input type="hidden" placeholder="current_user username" />
+        <input
+          type="text"
+          name="title"
+          placeholder="review title!"
+          onChange={(e) => handleChangeReview(e)}
+        />
+        <input
+          type="text"
+          name="content"
+          placeholder="what a super cool theme!"
+          onChange={(e) => handleChangeReview(e)}
+        />
         <input type="submit" value="Submit Review" />
+        <input
+          type="hidden"
+          name="theme_id"
+          value={props.match.params.theme_id}
+          onChange={(e) => handleChangeReview(e)}
+        />
       </form>
     </div>
   )

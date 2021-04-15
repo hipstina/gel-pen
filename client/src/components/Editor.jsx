@@ -28,9 +28,9 @@ const Editor = (props) => {
   const handleChangeEditor = (e) => {
     let styleStr = stringifyStyle()
 
-    // INSERT UPDATED STYLESHEET VARIABLES
+    // INSERT UPDATED STYLE OBJECT
     document.styleSheets[1].insertRule(`:root{${styleStr}}`, 0)
-    // DELETE OUTDATED STYLESHEET VARIABLES
+    // DELETE OUTDATED STYLE OBJECT
     document.styleSheets[1].deleteRule(1)
 
     if (

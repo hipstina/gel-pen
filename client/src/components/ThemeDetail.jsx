@@ -2,12 +2,7 @@ import React, { useEffect } from 'react'
 import ReviewCard from '../components/ReviewCard'
 import { connect } from 'react-redux'
 import { UpdateLikeCount, DeleteThemeById } from '../store/actions/ThemeActions'
-import {
-  GetReviewsByTheme,
-  DeleteReviewById,
-  AddReviewInput,
-  ReviewSubmitted
-} from '../store/actions/ReviewActions'
+import { GetReviewsByTheme } from '../store/actions/ReviewActions'
 
 const mapStateToProps = (state) => {
   return {
@@ -19,18 +14,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTheme: (id) => dispatch(GetReviewsByTheme(id)),
-    deleteTheme: (id) => dispatch(DeleteThemeById(id)),
-    deleteReview: (id) => dispatch(DeleteReviewById(id)),
-    addReviewInput: (inputName, input) =>
-      dispatch(AddReviewInput(inputName, input)),
-    reviewSubmit: () => dispatch(ReviewSubmitted())
+    deleteTheme: (id) => dispatch(DeleteThemeById(id))
   }
 }
 
 const ThemeDetails = (props) => {
   useEffect(() => {
     props.getTheme(props.match.params.theme_id)
-  }, [])
+  }, [props.reviewState.review_submitted])
 
   const renderReviews = () => {
     return props.reviewState.reviews_by_theme.reviews ? (
@@ -48,7 +39,6 @@ const ThemeDetails = (props) => {
 
   const deleteTheme = (e) => {
     e.preventDefault()
-    console.log('deleted!', props.match.params.theme_id)
     props.deleteTheme(props.match.params.theme_id)
   }
 

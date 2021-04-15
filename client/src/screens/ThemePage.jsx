@@ -9,7 +9,7 @@ const ThemePage = (props) => {
     <div>
       <ThemeDetail {...props} />
       <Interactions />
-      <ReviewForm />
+      <ReviewForm {...props} />
     </div>
   )
 }
