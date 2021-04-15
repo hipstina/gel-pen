@@ -22,10 +22,6 @@ const ReviewReducer = (state = iState, action) => {
       return { ...state, reviews_by_theme: action.payload }
     case CREATE_REVIEW:
       state.reviews_by_theme.reviews.push(action.payload)
-      console.log(
-        'review reducer updated reviews',
-        state.reviews_by_theme.reviews
-      )
       return { ...state }
     case DELETE_REVIEW:
       return { ...state, reviews_by_theme: action.payload }

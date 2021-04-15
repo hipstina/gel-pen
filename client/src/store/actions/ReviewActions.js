@@ -24,10 +24,8 @@ export const GetReviewsByTheme = (id) => async (dispatch) => {
 }
 
 export const CreateReview = (req) => async (dispatch) => {
-  console.log('CreateReview req', req)
   try {
     const review = await __CreateReview(req)
-    console.log('CreateReview res', review)
     dispatch({
       type: CREATE_REVIEW,
       payload: review
@@ -53,10 +51,7 @@ export const ReviewSubmitted = () => ({
   type: REVIEW_SUBMITTED // toggle boolean
 })
 
-export const AddReviewInput = (inputName, input) => (
-  console.log(inputName, input),
-  {
-    type: ADD_REVIEW_INPUT, // toggle boolean
-    payload: { name: inputName, input: input }
-  }
-)
+export const AddReviewInput = (inputName, input) => ({
+  type: ADD_REVIEW_INPUT, // toggle boolean
+  payload: { name: inputName, input: input }
+})
