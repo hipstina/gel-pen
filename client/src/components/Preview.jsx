@@ -30,7 +30,7 @@ const Preview = (props) => {
 
         ReactDOM.render(<App />, document.getElementById("root"));
      `
-
+  // CONDITIONALLY DESCTRUCTURE PROPS
   const {
     text,
     bg,
@@ -55,7 +55,8 @@ const Preview = (props) => {
     operator,
     entity,
     url
-  } = props.editorState.css_styles
+  } = props.css_styles ? props.css_styles : props.editorState.css_styles
+
   return (
     <div>
       Preview

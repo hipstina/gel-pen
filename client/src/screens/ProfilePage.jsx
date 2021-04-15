@@ -41,6 +41,7 @@ const ProfilePage = (props) => {
       props.userState.selected_user_data.themes.map((theme, idx) => (
         <div key={idx}>
           <ThemeCard
+            css_styles={theme.css_styles}
             theme_id={theme.id}
             themeName={theme.theme_name}
             likes={theme.likes}
@@ -51,7 +52,7 @@ const ProfilePage = (props) => {
         </div>
       ))
     ) : (
-      <p>"Nothing to map"</p>
+      <p>"Themes loading"</p>
     )
   }
   return (
