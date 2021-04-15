@@ -30,8 +30,10 @@ export const __GetThemeById = async (id) => {
 }
 
 export const __DeleteThemeById = async (id) => {
+  console.log('__DeleteThemeById id', id)
   try {
     const res = await Client.delete(`/themes/${id}`)
+    console.log('__DeleteThemeById res', res)
     return res.data
   } catch (err) {
     console.log(err)

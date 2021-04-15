@@ -29,22 +29,26 @@ class Themes(Resource):
 
 
 class OneTheme(Resource):
-    def get(self, id):
+    def get(self, id):  # TODO: add error handling for when id cannot be found
         theme = Theme.find_by_id(id)
         return theme.json()
 
     def delete(self, id):
-        token = strip_token(request)
-        if token:
-            payload = read_token(token)
-            if payload != "Signature Invalid" and payload != "Invalid Token":
-                # check that id of authenticated user matches theme's user_id
-                theme = Theme.find_by_id(id)
-                if theme.user_id == payload['id']:
-                    db.session.delete(theme)
-                    db.session.commit()
-                    return {"msg": 'Theme deleted', 'payload': theme.id}
-        return 'Unauthorized', 401
+        theme = Theme.find_by_id(id)
+        db.session.delete(theme)
+        db.session.commit()
+        return {"msg": 'Theme deleted', 'payload': theme.id}
+        # token = strip_token(request)
+        # if token:
+        #     payload = read_token(token)
+        #     if payload != "Signature Invalid" and payload != "Invalid Token":
+        #         # check that id of authenticated user matches theme's user_id
+        #         theme = Theme.find_by_id(id)
+        #         if theme.user_id == payload['id']:
+        #             db.session.delete(theme)
+        #             db.session.commit()
+        #             return {"msg": 'Theme deleted', 'payload': theme.id}
+        # return 'Unauthorized', 401
 
     def put(self, id):
         theme = Theme.find_by_id(id)

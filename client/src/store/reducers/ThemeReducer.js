@@ -9,7 +9,7 @@ import {
 const iState = {
   themes: [],
   theme_by_id: [],
-  selected_theme_id: null
+  selected_theme_id: ''
 }
 
 const ThemeReducer = (state = iState, action) => {

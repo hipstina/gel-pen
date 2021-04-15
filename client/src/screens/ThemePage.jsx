@@ -4,10 +4,10 @@ import Interactions from '../components/Interactions'
 import ReviewCard from '../components/ReviewCard'
 import ReviewForm from '../components/ReviewForm'
 
-const ThemePage = () => {
+const ThemePage = (props) => {
   return (
     <div>
-      <ThemeDetail />
+      <ThemeDetail {...props} />
       <Interactions />
       <ReviewForm />
     </div>

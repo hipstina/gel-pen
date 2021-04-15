@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const ThemeDetails = (props) => {
   useEffect(() => {
-    props.getTheme(props.themeState.selected_theme_id)
+    props.getTheme(props.match.params.theme_id)
   }, [])
 
   const renderReviews = () => {
@@ -44,6 +44,12 @@ const ThemeDetails = (props) => {
     ) : (
       <p>'No review data to render'</p>
     )
+  }
+
+  const deleteTheme = (e) => {
+    e.preventDefault()
+    console.log('deleted!', props.match.params.theme_id)
+    props.deleteTheme(props.match.params.theme_id)
   }
 
   return (
@@ -61,6 +67,7 @@ const ThemeDetails = (props) => {
               ? renderReviews()
               : 'Be the first to review!'}
           </div>
+          <button onClick={(e) => deleteTheme(e)}>Delete theme</button>
         </div>
       ) : (
         <p>"No details about this theme"</p>

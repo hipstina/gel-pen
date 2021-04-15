@@ -25,7 +25,8 @@ const ProfilePage = (props) => {
     props.getThemes(1)
   }, [])
 
-  const targetTheme = (id) => {
+  const targetTheme = (e, id) => {
+    e.preventDefault()
     props.targetTheme(id)
     props.history.push(`/themes/${id}`)
   }
@@ -46,7 +47,7 @@ const ProfilePage = (props) => {
             created={theme.created_at}
             onClick={(e) => incLikes(e, theme.id, theme.likes)}
           />
-          <button onClick={() => targetTheme(theme.id)}>+</button>
+          <button onClick={(e) => targetTheme(e, theme.id)}>+</button>
         </div>
       ))
     ) : (
