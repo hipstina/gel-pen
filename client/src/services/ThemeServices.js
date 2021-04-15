@@ -1,8 +1,10 @@
 import Client from './'
 
 export const __CreateNewTheme = async (req) => {
+  console.log('__CreateNewTheme req', req)
   try {
     const res = await Client.post(`/themes`, req)
+    console.log('__CreateNewTheme res', res)
     return res.data
   } catch (err) {
     console.log(err)

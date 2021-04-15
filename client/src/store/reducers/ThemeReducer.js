@@ -21,7 +21,7 @@ const ThemeReducer = (state = iState, action) => {
     case GET_THEME_BY_ID:
       return { ...state, theme_by_id: action.payload }
     case CREATE_THEME:
-      return { ...state, themes: action.payload }
+      return { ...state, themes: state.themes.push(action.payload) }
     // case INCREMENT_LIKES:
     //   const targetId = state.themes.filter(
     //     (theme) => theme.id === action.payload

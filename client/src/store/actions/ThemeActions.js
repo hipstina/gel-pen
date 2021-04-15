@@ -19,9 +19,9 @@ export const SelectedThemeId = (id) => ({
   payload: id
 })
 
-export const CreateNewTheme = () => async (dispatch) => {
+export const CreateNewTheme = (input) => async (dispatch) => {
   try {
-    const theme = await __CreateNewTheme()
+    const theme = await __CreateNewTheme(input)
     dispatch({
       type: CREATE_THEME,
       payload: theme
