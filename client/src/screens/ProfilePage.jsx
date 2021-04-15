@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 const ProfilePage = (props) => {
   useEffect(() => {
     props.getThemes(1)
-  }, [props.getThemes])
+  }, [])
 
   const targetTheme = (id) => {
     props.targetTheme(id)
