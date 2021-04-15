@@ -1,0 +1,159 @@
+/* PrismJS 1.23.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+bash+json+markdown+python+jsx+regex+sass+scss+sql */
+/**
+ * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
+ * Based on https://github.com/chriskempson/tomorrow-theme
+ * @author Rose Pritchard
+ */
+
+:root {
+  --text: #cccccc;
+  --bg: #2d2d2d;
+  --comment: #999;
+  --punct: #cccccc;
+  --tags: #e2777a;
+  --attr_name: #e2777a;
+  --func_name: #e2777a;
+  --bool: #f08d49;
+  --number: #f08d49;
+  --func: #f08d49;
+  --property: #f8c555;
+  --class_name: #f8c555;
+  --constant: #f8c555;
+  --selector: #cc99cd;
+  --keyword: #cc99cd;
+  --str: #7ec699;
+  --charact: #7ec699;
+  --attr_value: #7ec699;
+  --regx: #7ec699;
+  --variable: #7ec699;
+  --operator: #67cdcc;
+  --entity: #67cdcc;
+  --url: #67cdcc;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: var(--text);
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  /* font-size: 1em; */
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre {
+  border-radius: 0.8rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+code {
+  font-size: 14px;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  background: var(--bg);
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--comment);
+}
+
+.token.punctuation {
+  color: var(--punct);
+}
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+  color: var(--tags);
+}
+
+.token.function-name {
+  color: var(--func_name);
+}
+
+.token.boolean,
+.token.number,
+.token.function {
+  color: var(--bool);
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+  color: var(--property);
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+  color: var(--selector);
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+  color: var(--str);
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+  color: var(--operator);
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.inserted {
+  color: green;
+}
