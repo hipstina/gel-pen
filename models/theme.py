@@ -1,12 +1,14 @@
 from models.db import db
 from sqlalchemy.orm import joinedload
 from datetime import datetime  # optional
+import json
+from sqlalchemy.dialects.postgresql.json import JSONB
 
 
 class Theme(db.Model):
     __tablename__ = 'themes'
     id = db.Column(db.Integer, primary_key=True)
-    css_styles = db.Column(db.Text)  # db.JSON
+    css_styles = db.Column(JSONB)
     theme_name = db.Column(db.String(80))
     likes = db.Column(db.Integer)
     theme_description = db.Column(db.String(255))
@@ -15,11 +17,11 @@ class Theme(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(
     ), nullable=False, onupdate=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey(
-        'users.id'), nullable=False)  # FK
+        'users.id'), nullable=False)
     user = db.relationship("User", backref=db.backref(
-        'user', lazy=True))  # association
+        'user', lazy=True))
     reviews = db.relationship("Review", cascade='all', backref=db.backref(
-        'reviews', lazy=True))  # association
+        'reviews', lazy=True))
 
     def __init__(self, css_styles, theme_name, likes, theme_description, user_id):
         self.css_styles = css_styles

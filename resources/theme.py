@@ -13,15 +13,19 @@ class Themes(Resource):
         return results
 
     def post(self):
-        token = strip_token(request)
-        if token:
-            payload = read_token(token)
-            if payload != "Signature Invalid" and payload != "Invalid Token":
-                data = request.get_json()
-                theme = Theme(**data)
-                theme.create()
-                return theme.json(), 201
-        return 'Unauthorized', 401
+        data = request.get_json()
+        theme = Theme(**data)
+        theme.create()
+        return theme.json(), 201
+        # token = strip_token(request)
+        # if token:
+        #     payload = read_token(token)
+        #     if payload != "Signature Invalid" and payload != "Invalid Token":
+        #         data = request.get_json()
+        #         theme = Theme(**data)
+        #         theme.create()
+        #         return theme.json(), 201
+        # return 'Unauthorized. This is a protected route', 401
 
 
 class OneTheme(Resource):
@@ -43,7 +47,6 @@ class OneTheme(Resource):
         return 'Unauthorized', 401
 
     def put(self, id):
-        print('!!! theme put id', id)
         theme = Theme.find_by_id(id)
         data = request.get_json()
 
