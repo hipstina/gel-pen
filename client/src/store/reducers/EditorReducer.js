@@ -43,9 +43,19 @@ const EditorReducer = (state = iState, action) => {
         }
       }
     case ADD_META_DETAILS:
-      return { ...state, [action.payload.name]: action.payload.input }
+      return {
+        ...state,
+        [action.payload.name]: action.payload.input,
+
+        css_submitted: false
+      }
     case CSS_SUBMITTED:
-      return { ...state, css_submitted: !state.css_submitted }
+      return {
+        ...state,
+        css_submitted: !state.css_submitted,
+        theme_description: '',
+        theme_name: ''
+      }
     default:
       return { ...state }
   }
