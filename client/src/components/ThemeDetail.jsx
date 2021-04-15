@@ -3,6 +3,7 @@ import ReviewCard from '../components/ReviewCard'
 import { connect } from 'react-redux'
 import { UpdateLikeCount, DeleteThemeById } from '../store/actions/ThemeActions'
 import { GetReviewsByTheme } from '../store/actions/ReviewActions'
+import Preview from '../components/Preview'
 
 const mapStateToProps = (state) => {
   return {
@@ -44,13 +45,11 @@ const ThemeDetails = (props) => {
 
   return (
     <div>
-      ThemeDetails
+      <Preview css_styles={props.reviewState.reviews_by_theme.css_styles} />
       {props.reviewState.reviews_by_theme ? (
         <div>
           <h2>{props.reviewState.reviews_by_theme.theme_name}</h2>
-          <p>
-            <em>{props.reviewState.reviews_by_theme.theme_description}</em>
-          </p>
+          <p>{props.reviewState.reviews_by_theme.theme_description}</p>
           <p>Likes {props.reviewState.reviews_by_theme.likes}</p>
           <div>
             {props.reviewState.reviews_by_theme.reviews
