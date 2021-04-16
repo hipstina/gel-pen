@@ -129,7 +129,7 @@ function matchPattern(pattern, pos, text, lookbehind) {
           '--url': `${url}`
         }}
       >
-        <code className="language-js">{codeSnippetJS}</code>
+        <code className="language-js">{codeSnippetJSX}</code>
       </pre>
     </div>
   )

@@ -23,10 +23,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Login = (props) => {
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    props.checkSession(token)
-  }, [])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   props.checkSession(token)
+  // }, [])
 
   const logOut = () => {
     localStorage.clear()
@@ -42,12 +42,15 @@ const Login = (props) => {
       username: props.authState.username,
       password: props.authState.password
     })
+
+    props.history.push(`/profile`)
   }
 
   return (
     <div>
+      {console.log('Login component rerendering')}
       Login
-      {props.authState.authenticated ? (
+      {props.authState.login_submitted && props.authState.authenticated ? (
         <div>
           <h3>You are logged in.</h3>
           <button onClick={logOut}>Logout</button>
@@ -59,12 +62,14 @@ const Login = (props) => {
             type="text"
             name="username"
             placeholder="username"
+            value={props.authState.username}
             onChange={(e) => handleChangeLogin(e)}
           />
           <label>Password: </label>
           <input
             type="password"
             name="password"
+            value={props.authState.password}
             placeholder="password"
             onChange={(e) => handleChangeLogin(e)}
           />

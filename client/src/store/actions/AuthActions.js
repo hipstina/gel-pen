@@ -26,25 +26,23 @@ export const RegisterUser = (req) => async (dispatch) => {
 export const LoginUserByUsername = (req) => async (dispatch) => {
   try {
     const user = await __LoginUserByUsername(req)
-    if (user.token) {
-      localStorage.setItem('token', user.token)
+    localStorage.setItem('token', user.token)
+    dispatch({
+      type: SUBMIT_LOGIN,
+      payload: true // maybe can return a boolean
+    })
 
-      dispatch({
-        type: SUBMIT_LOGIN,
-        payload: true // maybe can return a boolean
-      })
-
-      dispatch({
-        type: SET_CURRENT_USER,
-        payload: user.user.id
-      })
-    }
+    dispatch({
+      type: SET_CURRENT_USER,
+      payload: user.user.id
+    })
   } catch (err) {
     console.log(err)
     dispatch({
       type: SUBMIT_LOGIN,
       payload: false // maybe can return a boolean
     })
+    alert('Invalid login')
   }
 }
 

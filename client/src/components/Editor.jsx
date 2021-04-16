@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
   AddCSS,
@@ -9,7 +9,8 @@ import { CreateNewTheme } from '../store/actions/ThemeActions'
 
 const mapStateToProps = (state) => {
   return {
-    editorState: state.editorState
+    editorState: state.editorState,
+    userState: state.userState
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -23,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Editor = (props) => {
-  const { theme_name, theme_description, user_id } = props.editorState
+  const { theme_name, theme_description } = props.editorState
 
   const handleChangeEditor = (e) => {
     let styleStr = stringifyStyle()
@@ -48,7 +49,7 @@ const Editor = (props) => {
       theme_name: props.editorState.theme_name,
       likes: 0,
       theme_description: props.editorState.theme_description,
-      user_id: props.editorState.user_id
+      user_id: props.userState.current_user_id
     }
     props.submitCss(newTheme)
     props.toggleSubmitted()
@@ -109,7 +110,11 @@ const Editor = (props) => {
           onChange={(e) => handleChangeEditor(e)}
         />
         {renderColorOptions()}
-        <input type="hidden" name="user_id" value={user_id} />
+        <input
+          type="hidden"
+          name="user_id"
+          value={props.userState.current_user_id}
+        />
         <input type="submit" value="Publish Theme" />
       </form>
     </div>

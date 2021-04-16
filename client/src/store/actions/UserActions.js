@@ -38,6 +38,7 @@ export const GetAllUsers = () => async (dispatch) => {
 export const GetThemesByUser = (id) => async (dispatch) => {
   try {
     const user_themes = await __GetThemesByUser(id)
+    console.log('GetThemesByUser res', user_themes)
     dispatch({
       type: GET_THEMES_BY_USER,
       payload: user_themes
