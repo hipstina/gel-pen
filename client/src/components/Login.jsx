@@ -1,38 +1,20 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import {
-  AddLogin,
-  LoginUserByUsername,
-  logOut,
-  CheckSession
-} from '../store/actions/AuthActions'
+import { AddLogin, LoginUserByUsername } from '../store/actions/AuthActions'
 
 const mapStateToProps = (state) => {
   return {
-    authState: state.authState,
-    userState: state.userState
+    authState: state.authState
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     addLogin: (inputName, input) => dispatch(AddLogin(inputName, input)),
-    submitLogin: (login) => dispatch(LoginUserByUsername(login)),
-    logOut: () => dispatch(logOut()),
-    checkSession: (input) => dispatch(CheckSession(input))
+    submitLogin: (login) => dispatch(LoginUserByUsername(login))
   }
 }
 
 const Login = (props) => {
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   props.checkSession(token)
-  // }, [])
-
-  const logOut = () => {
-    localStorage.clear()
-    props.logOut()
-  }
-
   const handleChangeLogin = (e) => {
     props.addLogin(e.target.name, e.target.value)
   }
@@ -48,34 +30,27 @@ const Login = (props) => {
 
   return (
     <div>
-      {console.log('Login component rerendering')}
-      Login
-      {props.authState.login_submitted && props.authState.authenticated ? (
-        <div>
-          <h3>You are logged in.</h3>
-          <button onClick={logOut}>Logout</button>
-        </div>
-      ) : (
-        <form onSubmit={(e) => handleSubmitLogin(e)}>
-          <label>Username: </label>
-          <input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={props.authState.username}
-            onChange={(e) => handleChangeLogin(e)}
-          />
-          <label>Password: </label>
-          <input
-            type="password"
-            name="password"
-            value={props.authState.password}
-            placeholder="password"
-            onChange={(e) => handleChangeLogin(e)}
-          />
-          <input type="submit" value="Login" />
-        </form>
-      )}
+      <h2>Login</h2>
+
+      <form onSubmit={(e) => handleSubmitLogin(e)}>
+        <label>Username: </label>
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          value={props.authState.username}
+          onChange={(e) => handleChangeLogin(e)}
+        />
+        <label>Password: </label>
+        <input
+          type="password"
+          name="password"
+          value={props.authState.password}
+          placeholder="password"
+          onChange={(e) => handleChangeLogin(e)}
+        />
+        <input type="submit" value="Login" />
+      </form>
     </div>
   )
 }

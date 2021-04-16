@@ -3,10 +3,10 @@ import Editor from '../components/Editor'
 import Preview from '../components/Preview'
 import '../styles/Editor.css'
 
-const EditorPage = () => {
+const EditorPage = (props) => {
   return (
     <div className="editor__preview__wrapper">
-      <Editor />
+      <Editor {...props} />
       <Preview />
     </div>
   )

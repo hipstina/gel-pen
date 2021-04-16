@@ -25,11 +25,12 @@ const Register = (props) => {
       username: props.authState.username,
       password: props.authState.password
     })
+    props.history.push('/login')
   }
 
   return (
     <div>
-      Register
+      <h2>Register</h2>
       <form onSubmit={(e) => handleSubmitLogin(e)}>
         <label>Username: </label>
         <input
@@ -48,7 +49,8 @@ const Register = (props) => {
 
         <input type="submit" value="Sign up" />
       </form>
-      {props.authState.reg_submitted && <div>Go login!</div>}
+      <h3>Already have an account?</h3>
+      <button onClick={() => props.history.push('/login')}>Sign in</button>
     </div>
   )
 }

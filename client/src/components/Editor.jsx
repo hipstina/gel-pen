@@ -10,7 +10,8 @@ import { CreateNewTheme } from '../store/actions/ThemeActions'
 const mapStateToProps = (state) => {
   return {
     editorState: state.editorState,
-    userState: state.userState
+    userState: state.userState,
+    authState: state.authState
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -115,7 +116,16 @@ const Editor = (props) => {
           name="user_id"
           value={props.userState.current_user_id}
         />
-        <input type="submit" value="Publish Theme" />
+        {props.authState.authenticated ? (
+          <input type="submit" value="Publish Theme" />
+        ) : (
+          <button
+            value="Publish Theme"
+            onClick={() => props.history.push('/register')}
+          >
+            Sign up to publish your theme!
+          </button>
+        )}
       </form>
     </div>
   )
