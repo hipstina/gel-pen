@@ -18,7 +18,7 @@ const AuthReducer = (state = iState, action) => {
     case SUBMIT_REGISTRATION:
       return {
         ...state,
-        reg_submitted: !state.reg_submitted
+        reg_submitted: action.payload
       }
     case SUBMIT_LOGIN:
       return {

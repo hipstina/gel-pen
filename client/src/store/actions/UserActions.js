@@ -47,7 +47,7 @@ export const GetThemesByUser = (id) => async (dispatch) => {
   }
 }
 
-export const GetReviewsThemesByUser = () => async (dispatch) => {
+export const GetReviewsThemesByUser = (input) => async (dispatch) => {
   try {
     const themes_reviews = await __GetReviewsThemesByUser()
     dispatch({

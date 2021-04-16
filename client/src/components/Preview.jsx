@@ -21,7 +21,7 @@ const Preview = (props) => {
     setTimeout(() => Prism.highlightAll(), 0)
   }, [])
 
-  const codeSnippet = `        
+  const codeSnippetJSX = `        
         const App = () => {
           return (
             <h1>the codes</h1>
@@ -30,7 +30,49 @@ const Preview = (props) => {
 
         ReactDOM.render(<App />, document.getElementById("root"));
      `
-  // CONDITIONALLY DESCTRUCTURE PROPS
+  const codeSnippetJS = `Token.stringify = function stringify(o, language) {
+	if (typeof o == 'string') {
+		return o;
+	}
+	if (Array.isArray(o)) {
+		var s = '';
+		o.forEach(function (e) {
+			s += stringify(e, language);
+		});
+		return s;
+	}
+  
+	_.hooks.run('wrap', env);
+
+	var attributes = '';
+	for (var name in env.attributes) {
+		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
+	}
+
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
+};
+
+/**
+ * @param {RegExp} pattern
+ * @param {number} pos
+ * @param {string} text
+ * @param {boolean} lookbehind
+ * @returns {RegExpExecArray | null}
+ */
+function matchPattern(pattern, pos, text, lookbehind) {
+	pattern.lastIndex = pos;
+	var match = pattern.exec(text);
+	if (match && lookbehind && match[1]) {
+		// change the match to remove the text matched by the Prism lookbehind group
+		var lookbehindLength = match[1].length;
+		match.index += lookbehindLength;
+		match[0] = match[0].slice(lookbehindLength);
+	}
+	return match;
+}
+`
+  // CONDITIONALLY DESCTRUCTURE STYLE OBJ PROPS
+  // DEFAULT TO CURRENT STATES STYLE OBJ
   const {
     text,
     bg,
@@ -87,7 +129,7 @@ const Preview = (props) => {
           '--url': `${url}`
         }}
       >
-        <code className="language-js">{codeSnippet}</code>
+        <code className="language-js">{codeSnippetJS}</code>
       </pre>
     </div>
   )

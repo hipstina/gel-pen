@@ -30,6 +30,15 @@ class Login(Resource):
     #     return 'Unauthorized', 401
 
 
+class Session(Resource):
+    def get(self):
+        token = strip_token(request)
+        if token:
+            payload = read_token(token)
+            return payload
+        return 'Unauthorized token', 401
+
+
 class Register(Resource):
     def post(self):
         data = request.get_json()

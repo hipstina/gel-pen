@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from resources.user import Users, OneUser, ThemesByUser, ReviewsThemesByUser
 from resources.review import Reviews, OneReview
 from resources.theme import Themes, OneTheme, ReviewsByTheme
-from resources.auth import Login, Register
+from resources.auth import Login, Register, Session
 from models.db import db
 from models.user import User
 from models.review import Review
@@ -37,7 +37,7 @@ api.add_resource(OneTheme, '/themes/<int:id>')
 
 api.add_resource(Login, '/auth/login')
 api.add_resource(Register, '/auth/register')
-
+api.add_resource(Session, '/auth/session')
 
 if __name__ == '__main__':
     app.run(debug=True)

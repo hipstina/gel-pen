@@ -4,11 +4,13 @@ import Profile from '../components/Profile'
 import ThemeCard from '../components/ThemeCard'
 import { GetThemesByUser } from '../store/actions/UserActions'
 import { SelectedThemeId, UpdateLikeCount } from '../store/actions/ThemeActions'
+import { CheckSession } from '../store/actions/AuthActions'
 
 const mapStateToProps = (state) => {
   return {
     userState: state.userState,
-    themeState: state.themeState
+    themeState: state.themeState,
+    authState: state.authState
   }
 }
 
@@ -16,14 +18,18 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getThemes: (id) => dispatch(GetThemesByUser(id)),
     targetTheme: (id) => dispatch(SelectedThemeId(id)),
-    incrementLikes: (id, likes) => dispatch(UpdateLikeCount(id, likes))
+    incrementLikes: (id, likes) => dispatch(UpdateLikeCount(id, likes)),
+    checkSession: (input) => dispatch(CheckSession(input))
   }
 }
 
 const ProfilePage = (props) => {
   useEffect(() => {
-    props.getThemes(1)
-  }, [])
+    props.userState.current_user_id &&
+      props.getThemes(props.userState.current_user_id)
+    const token = localStorage.getItem('token')
+    props.checkSession(token)
+  }, [props.userState.current_user_id])
 
   const targetTheme = (e, id) => {
     e.preventDefault()
@@ -40,6 +46,7 @@ const ProfilePage = (props) => {
     return props.userState.selected_user_data.themes ? (
       props.userState.selected_user_data.themes.map((theme, idx) => (
         <div key={idx}>
+          <p>All of my themes!</p>
           <ThemeCard
             css_styles={theme.css_styles}
             theme_id={theme.id}
@@ -52,16 +59,15 @@ const ProfilePage = (props) => {
         </div>
       ))
     ) : (
-      <p>"Themes loading"</p>
+      <p>no themes yet!</p>
     )
   }
   return (
     <div>
-      ProfilePage
       <Profile />
-      {props.userState.selected_user_data
+      {props.authState.authenticated
         ? renderUserThemes()
-        : 'no themes yet!'}
+        : 'Login to create a profile!'}
     </div>
   )
 }
