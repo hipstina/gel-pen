@@ -15,19 +15,14 @@ class Login(Resource):
             match = compare_password(
                 data['password'], user.password_digest
             )
-            payload = {
-                "id": user.id,
-                "username": user.username
-            }
-            token = create_token(payload)
-        return {"user": payload, "token": token}
-
-    # def get(self):  # use this to protect your routes; load middleware
-    #     token = strip_token(request)
-    #     if token:
-    #         payload = read_token(token)
-    #         return payload
-    #     return 'Unauthorized', 401
+            if match:
+                payload = {
+                    "id": user.id,
+                    "username": user.username
+                }
+                token = create_token(payload)
+                return {"user": payload, "token": token}
+        return 'Unauthorized user', 401
 
 
 class Session(Resource):

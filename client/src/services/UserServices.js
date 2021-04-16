@@ -20,8 +20,10 @@ export const __GetUserById = async (id) => {
 
 export const __GetThemesByUser = async (id) => {
   try {
-    const res = await Client.get(`/user/themes/${id}`)
-    return res.data
+    if (id) {
+      const res = await Client.get(`/user/themes/${id}`)
+      return res.data
+    }
   } catch (err) {
     console.log(err)
   }

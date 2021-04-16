@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 const ThemeDetails = (props) => {
   useEffect(() => {
     props.getTheme(props.match.params.theme_id)
+    // eslint-disable-next-line
   }, [props.reviewState.review_submitted])
 
   const renderReviews = () => {

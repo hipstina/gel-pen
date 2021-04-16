@@ -20,12 +20,10 @@ export const __LoginUserByUsername = async (req) => {
 }
 
 export const __CheckSession = async (req) => {
-  console.log('__CheckSession req', req)
   try {
     const res = await Client.get(`/auth/session`)
-    console.log('__CheckSession res', res)
     return res.data
   } catch (err) {
-    console.log(err)
+    console.log('Please login.')
   }
 }

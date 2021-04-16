@@ -114,7 +114,11 @@ const Editor = (props) => {
         <input
           type="hidden"
           name="user_id"
-          value={props.userState.current_user_id}
+          value={
+            props.userState.current_user_id
+              ? props.userState.current_user_id
+              : 1
+          }
         />
         {props.authState.authenticated ? (
           <input type="submit" value="Publish Theme" />

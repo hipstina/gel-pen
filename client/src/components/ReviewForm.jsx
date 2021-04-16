@@ -9,7 +9,8 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    reviewState: state.reviewState
+    reviewState: state.reviewState,
+    authState: state.authState
   }
 }
 
@@ -42,30 +43,40 @@ const ReviewForm = (props) => {
   return (
     <div>
       <h3>Submit a review:</h3>
-      <form onSubmit={(e) => handleSubmitReview(e)}>
-        {/* TODO: CALCULATE CURRENT USER TO AUTOFILL AUTHENTICATED USER */}
-        <input type="hidden" placeholder="current_user avatar" />
-        <input type="hidden" placeholder="current_user username" />
-        <input
-          type="text"
-          name="title"
-          placeholder="review title!"
-          onChange={(e) => handleChangeReview(e)}
-        />
-        <input
-          type="text"
-          name="content"
-          placeholder="what a super cool theme!"
-          onChange={(e) => handleChangeReview(e)}
-        />
-        <input type="submit" value="Submit Review" />
-        <input
-          type="hidden"
-          name="theme_id"
-          value={props.match.params.theme_id}
-          onChange={(e) => handleChangeReview(e)}
-        />
-      </form>
+      {props.authState.authenticated ? (
+        <form onSubmit={(e) => handleSubmitReview(e)}>
+          {/* TODO: CALCULATE CURRENT USER TO AUTOFILL AUTHENTICATED USER */}
+          <input type="hidden" placeholder="current_user avatar" />
+          <input type="hidden" placeholder="current_user username" />
+          <input
+            type="text"
+            name="title"
+            placeholder="review title!"
+            onChange={(e) => handleChangeReview(e)}
+          />
+          <input
+            type="text"
+            name="content"
+            placeholder="what a super cool theme!"
+            onChange={(e) => handleChangeReview(e)}
+          />
+
+          <input
+            type="hidden"
+            name="theme_id"
+            value={props.match.params.theme_id}
+            onChange={(e) => handleChangeReview(e)}
+          />
+          <input type="submit" value="Submit Review" />
+        </form>
+      ) : (
+        <button
+          value="Register"
+          onClick={() => props.history.push('/register')}
+        >
+          Sign up to leave a review!
+        </button>
+      )}
     </div>
   )
 }

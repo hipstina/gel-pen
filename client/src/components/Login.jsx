@@ -24,14 +24,21 @@ const Login = (props) => {
       username: props.authState.username,
       password: props.authState.password
     })
+  }
 
-    props.history.push(`/profile`)
+  const renderLoginError = () => <p>Invalid login. Try again!</p>
+
+  const isValidLogin = () => {
+    console.log('props.authState.login_invalid', props.authState.login_invalid)
+    props.authState.login_invalid
+      ? renderLoginError()
+      : props.history.push(`/profile`)
   }
 
   return (
     <div>
       <h2>Login</h2>
-
+      {props.authState.login_invalid && renderLoginError()}
       <form onSubmit={(e) => handleSubmitLogin(e)}>
         <label>Username: </label>
         <input

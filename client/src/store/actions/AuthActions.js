@@ -8,7 +8,8 @@ import {
   SUBMIT_LOGIN,
   ADD_REGISTRATION,
   ADD_LOGIN,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  INVALID_LOGIN
 } from '../types'
 
 export const RegisterUser = (req) => async (dispatch) => {
@@ -26,6 +27,7 @@ export const RegisterUser = (req) => async (dispatch) => {
 export const LoginUserByUsername = (req) => async (dispatch) => {
   try {
     const user = await __LoginUserByUsername(req)
+    console.log('LoginUserByUsername res', user)
     localStorage.setItem('token', user.token)
     dispatch({
       type: SUBMIT_LOGIN,
@@ -36,13 +38,17 @@ export const LoginUserByUsername = (req) => async (dispatch) => {
       type: SET_CURRENT_USER,
       payload: user.user.id
     })
+    return true
   } catch (err) {
-    console.log(err)
     dispatch({
       type: SUBMIT_LOGIN,
       payload: false // maybe can return a boolean
     })
-    alert('Invalid login')
+    dispatch({
+      type: INVALID_LOGIN,
+      dispatch: true
+    })
+    return false
   }
 }
 

@@ -20,10 +20,8 @@ export const SelectedThemeId = (id) => ({
 })
 
 export const CreateNewTheme = (input) => async (dispatch) => {
-  console.log('CreateNewTheme input', input)
   try {
     const theme = await __CreateNewTheme(input)
-    console.log('CreateNewTheme res', theme)
     dispatch({
       type: CREATE_THEME,
       payload: theme
@@ -34,7 +32,6 @@ export const CreateNewTheme = (input) => async (dispatch) => {
 }
 
 export const GetAllThemes = () => async (dispatch) => {
-  console.log('GetAllThemes action is firing')
   try {
     const themes = await __GetAllThemes()
     dispatch({

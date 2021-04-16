@@ -13,19 +13,15 @@ class Themes(Resource):
         return results
 
     def post(self):
-        data = request.get_json()
-        theme = Theme(**data)
-        theme.create()
-        return theme.json(), 201
-        # token = strip_token(request)
-        # if token:
-        #     payload = read_token(token)
-        #     if payload != "Signature Invalid" and payload != "Invalid Token":
-        #         data = request.get_json()
-        #         theme = Theme(**data)
-        #         theme.create()
-        #         return theme.json(), 201
-        # return 'Unauthorized. This is a protected route', 401
+        token = strip_token(request)
+        if token:
+            payload = read_token(token)
+            if payload != "Signature Invalid" and payload != "Invalid Token":
+                data = request.get_json()
+                theme = Theme(**data)
+                theme.create()
+                return theme.json(), 201
+        return 'Unauthorized. This is a protected route', 401
 
 
 class OneTheme(Resource):
@@ -34,21 +30,17 @@ class OneTheme(Resource):
         return theme.json()
 
     def delete(self, id):
-        theme = Theme.find_by_id(id)
-        db.session.delete(theme)
-        db.session.commit()
-        return {"msg": 'Theme deleted', 'payload': theme.id}
-        # token = strip_token(request)
-        # if token:
-        #     payload = read_token(token)
-        #     if payload != "Signature Invalid" and payload != "Invalid Token":
-        #         # check that id of authenticated user matches theme's user_id
-        #         theme = Theme.find_by_id(id)
-        #         if theme.user_id == payload['id']:
-        #             db.session.delete(theme)
-        #             db.session.commit()
-        #             return {"msg": 'Theme deleted', 'payload': theme.id}
-        # return 'Unauthorized', 401
+        token = strip_token(request)
+        if token:
+            payload = read_token(token)
+            if payload != "Signature Invalid" and payload != "Invalid Token":
+                # check that id of authenticated user matches theme's user_id
+                theme = Theme.find_by_id(id)
+                if theme.user_id == payload['id']:
+                    db.session.delete(theme)
+                    db.session.commit()
+                    return {"msg": 'Theme deleted', 'payload': theme.id}
+        return 'Unauthorized', 401
 
     def put(self, id):
         theme = Theme.find_by_id(id)
