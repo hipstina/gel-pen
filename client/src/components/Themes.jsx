@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import moment from 'moment-timezone'
 import ThemeCard from '../components/ThemeCard'
 import { SelectedThemeId, UpdateLikeCount } from '../store/actions/ThemeActions'
 
@@ -43,19 +44,34 @@ const Themes = (props) => {
     return data.length > 0 ? (
       data
         .map((theme, idx) => (
-          <div key={idx} created={theme.created_at}>
+          <div
+            key={idx}
+            created={theme.created_at}
+            theme_name={theme.theme_name}
+          >
             <ThemeCard
               css_styles={theme.css_styles}
               theme_id={theme.id}
               themeName={theme.theme_name}
               likes={theme.likes}
-              created={theme.created_at}
+              created={moment(theme.created_at)
+                .utcOffset(-840)
+                .format('YYYY-MM-DD HH:mm')}
               onClick={(e) => incLikes(e, theme.id, theme.likes)}
             />
             <button onClick={(e) => TargetTheme(e, theme.id)}>+</button>
           </div>
         ))
-        .sort((a, b) => a.props.created < b.props.created)
+        .sort((a, b) => {
+          // console.log(
+          //   a.props.theme_name,
+          //   // moment(a.props.created),
+          //   moment(a.props.created).utcOffset(-840).format('YYYY-MM-DD HH:mm')
+          // )
+          return (
+            moment(a.props.created).format() < moment(b.props.created).format()
+          )
+        })
     ) : (
       <div>
         <h3>You have no themes! </h3>
@@ -67,8 +83,11 @@ const Themes = (props) => {
   }
   return (
     <div>
-      Themes container
-      {props.authState.authenticated && props.userState.selected_user_data
+      {props.page === 'browse'
+        ? renderThemes()
+        : props.page === 'profile' &&
+          props.authState.authenticated &&
+          props.userState.selected_user_data
         ? renderThemes()
         : 'Login to create a profile!'}
     </div>

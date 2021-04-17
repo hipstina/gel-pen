@@ -19,7 +19,7 @@ export const __LoginUserByUsername = async (req) => {
   }
 }
 
-export const __CheckSession = async (req) => {
+export const __CheckSession = async () => {
   try {
     const res = await Client.get(`/auth/session`)
     return res.data

@@ -3,13 +3,16 @@ import {
   GET_THEME_BY_ID,
   DELETE_THEME_BY_ID,
   SET_SELECTED_THEME,
-  CREATE_THEME
+  CREATE_THEME,
+  IS_THEME_AUTHOR
 } from '../types'
 
 const iState = {
   themes: [],
   theme_by_id: [],
-  selected_theme_id: ''
+  selected_theme_id: '',
+  is_author: false,
+  is_deleted: false
 }
 
 const ThemeReducer = (state = iState, action) => {
@@ -19,12 +22,20 @@ const ThemeReducer = (state = iState, action) => {
     case CREATE_THEME:
       state.themes.push(action.payload)
       return { ...state }
+    case IS_THEME_AUTHOR:
+      return {
+        ...state,
+        is_author: action.payload
+      }
     case SET_SELECTED_THEME:
       return { ...state, selected_theme_id: action.payload }
     case GET_THEME_BY_ID:
       return { ...state, theme_by_id: action.payload }
     case DELETE_THEME_BY_ID:
-      return { ...state, themes: action.payload }
+      let updated_themes = state.themes.filter(
+        (theme) => theme.id !== action.payload.deleted.playload
+      )
+      return { ...state, themes: updated_themes }
     default:
       return { ...state }
   }

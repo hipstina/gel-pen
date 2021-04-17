@@ -11,7 +11,8 @@ import {
   SET_SELECTED_THEME,
   CREATE_THEME,
   INCREMENT_LIKES,
-  DELETE_THEME_BY_ID
+  DELETE_THEME_BY_ID,
+  IS_THEME_AUTHOR
 } from '../types'
 
 export const SelectedThemeId = (id) => ({
@@ -54,6 +55,11 @@ export const GetThemeById = (id) => async (dispatch) => {
     console.log(err)
   }
 }
+
+export const IsThemeAuthor = (bool) => ({
+  type: IS_THEME_AUTHOR,
+  payload: bool
+})
 
 export const UpdateLikeCount = (id, req) => async (dispatch) => {
   try {

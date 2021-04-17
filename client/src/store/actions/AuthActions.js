@@ -63,7 +63,7 @@ export const AddRegistration = (inputName, input) => ({
 
 export const logOut = () => ({
   type: SUBMIT_LOGIN,
-  payload: false // maybe can return a boolean
+  payload: false
 })
 
 export const CheckSession = (token) => async (dispatch) => {
