@@ -1,12 +1,10 @@
 import {
   __GetAllUsers,
-  __GetUserById,
   __GetThemesByUser,
   __GetReviewsThemesByUser
 } from '../../services/UserServices'
 import {
   GET_USERS,
-  GET_USER_BY_ID,
   GET_THEMES_BY_USER,
   GET_REVIEWSTHEMES_BY_USER
 } from '../types'

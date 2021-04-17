@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import {
   AddCSS,
@@ -80,6 +80,7 @@ const Editor = (props) => {
     }
     return styleArr.map((s, idx) => (
       <div key={idx}>
+        {/* TODO: add more detailed labels */}
         <label>{s[0]} </label>
         <input
           type="color"

@@ -14,7 +14,7 @@ import {
 
 export const RegisterUser = (req) => async (dispatch) => {
   try {
-    const user = await __RegisterUser(req)
+    await __RegisterUser(req)
     dispatch({
       type: SUBMIT_REGISTRATION,
       payload: true
@@ -27,11 +27,10 @@ export const RegisterUser = (req) => async (dispatch) => {
 export const LoginUserByUsername = (req) => async (dispatch) => {
   try {
     const user = await __LoginUserByUsername(req)
-    console.log('LoginUserByUsername res', user)
     localStorage.setItem('token', user.token)
     dispatch({
       type: SUBMIT_LOGIN,
-      payload: true // maybe can return a boolean
+      payload: true
     })
 
     dispatch({
@@ -42,7 +41,7 @@ export const LoginUserByUsername = (req) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: SUBMIT_LOGIN,
-      payload: false // maybe can return a boolean
+      payload: false
     })
     dispatch({
       type: INVALID_LOGIN,

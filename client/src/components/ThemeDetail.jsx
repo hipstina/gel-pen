@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ReviewCard from '../components/ReviewCard'
 import { connect } from 'react-redux'
-import { UpdateLikeCount, DeleteThemeById } from '../store/actions/ThemeActions'
+import { DeleteThemeById } from '../store/actions/ThemeActions'
 import { GetReviewsByTheme } from '../store/actions/ReviewActions'
 import Preview from '../components/Preview'
 

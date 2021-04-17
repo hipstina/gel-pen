@@ -33,20 +33,22 @@ const Themes = (props) => {
 
   const renderUserThemes = () => {
     return props.userState.selected_user_data.themes.length > 0 ? (
-      props.userState.selected_user_data.themes.map((theme, idx) => (
-        <div key={idx}>
-          <p>All of my themes!</p>
-          <ThemeCard
-            css_styles={theme.css_styles}
-            theme_id={theme.id}
-            themeName={theme.theme_name}
-            likes={theme.likes}
-            created={theme.created_at}
-            onClick={(e) => incLikes(e, theme.id, theme.likes)}
-          />
-          <button onClick={(e) => TargetTheme(e, theme.id)}>+</button>
-        </div>
-      ))
+      props.userState.selected_user_data.themes
+        .map((theme, idx) => (
+          <div key={idx} created={theme.created_at}>
+            <p>All of my themes!</p>
+            <ThemeCard
+              css_styles={theme.css_styles}
+              theme_id={theme.id}
+              themeName={theme.theme_name}
+              likes={theme.likes}
+              created={theme.created_at}
+              onClick={(e) => incLikes(e, theme.id, theme.likes)}
+            />
+            <button onClick={(e) => TargetTheme(e, theme.id)}>+</button>
+          </div>
+        ))
+        .sort((a, b) => a.props.created < b.props.created)
     ) : (
       <div>
         <h3>You have no themes! </h3>

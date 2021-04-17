@@ -20,20 +20,16 @@ const Login = (props) => {
   }
   const handleSubmitLogin = (e) => {
     e.preventDefault()
-    props.submitLogin({
-      username: props.authState.username,
-      password: props.authState.password
-    })
+    if (
+      props.submitLogin({
+        username: props.authState.username,
+        password: props.authState.password
+      })
+    )
+      props.history.push('/profile')
   }
 
   const renderLoginError = () => <p>Invalid login. Try again!</p>
-
-  const isValidLogin = () => {
-    console.log('props.authState.login_invalid', props.authState.login_invalid)
-    props.authState.login_invalid
-      ? renderLoginError()
-      : props.history.push(`/profile`)
-  }
 
   return (
     <div>

@@ -22,6 +22,7 @@ export const SelectedThemeId = (id) => ({
 export const CreateNewTheme = (input) => async (dispatch) => {
   try {
     const theme = await __CreateNewTheme(input)
+    console.log('CreateNewTheme res', theme)
     dispatch({
       type: CREATE_THEME,
       payload: theme
