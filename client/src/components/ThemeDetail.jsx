@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import ReviewCard from '../components/ReviewCard'
 import { connect } from 'react-redux'
 import { DeleteThemeById, IsThemeAuthor } from '../store/actions/ThemeActions'
@@ -65,7 +66,13 @@ const ThemeDetails = (props) => {
 
   return (
     <div>
-      <Preview css_styles={props.reviewState.reviews_by_theme.css_styles} />
+      {props.themeState.is_deleted ? (
+        <h3>This theme has been deleted!</h3>
+      ) : (
+        props.reviewState.reviews_by_theme && (
+          <Preview css_styles={props.reviewState.reviews_by_theme.css_styles} />
+        )
+      )}
       {props.reviewState.reviews_by_theme ? (
         <div>
           <h2>{props.reviewState.reviews_by_theme.theme_name}</h2>
@@ -81,7 +88,12 @@ const ThemeDetails = (props) => {
           )}
         </div>
       ) : (
-        <p>"No details about this theme"</p>
+        <div>
+          <p>This theme probably doesn't exist anymore.</p>
+          <Link to="/browse">
+            <h4>Browse more themes here.</h4>
+          </Link>
+        </div>
       )}
     </div>
   )
