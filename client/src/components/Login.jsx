@@ -24,7 +24,7 @@ const Login = (props) => {
       props.submitLogin({
         username: props.authState.username,
         password: props.authState.password
-      })
+      }) === true
     )
       props.history.push('/profile')
   }
@@ -34,7 +34,9 @@ const Login = (props) => {
   return (
     <div>
       <h2>Login</h2>
-      {props.authState.login_invalid && renderLoginError()}
+      <p className="timeout__invalid">
+        {props.authState.login_invalid && renderLoginError()}
+      </p>
       <form onSubmit={(e) => handleSubmitLogin(e)}>
         <label>Username: </label>
         <input

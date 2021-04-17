@@ -1,29 +1,33 @@
 import React, { useEffect } from 'react'
 import ReviewCard from '../components/ReviewCard'
 import { connect } from 'react-redux'
-import { DeleteThemeById } from '../store/actions/ThemeActions'
+import { DeleteThemeById, IsThemeAuthor } from '../store/actions/ThemeActions'
 import { GetReviewsByTheme } from '../store/actions/ReviewActions'
 import Preview from '../components/Preview'
 
 const mapStateToProps = (state) => {
   return {
     themeState: state.themeState,
-    reviewState: state.reviewState
+    reviewState: state.reviewState,
+    authState: state.authState,
+    userState: state.userState
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getTheme: (id) => dispatch(GetReviewsByTheme(id)),
-    deleteTheme: (id) => dispatch(DeleteThemeById(id))
+    deleteTheme: (id) => dispatch(DeleteThemeById(id)),
+    isThemeAuthor: (author) => dispatch(IsThemeAuthor(author))
   }
 }
 
 const ThemeDetails = (props) => {
   useEffect(() => {
     props.getTheme(props.match.params.theme_id)
+    isThemeAuthor()
     // eslint-disable-next-line
-  }, [props.reviewState.review_submitted])
+  }, [props.reviewState.review_submitted, props.match.params.theme_id])
 
   const renderReviews = () => {
     return props.reviewState.reviews_by_theme.reviews ? (
@@ -44,6 +48,21 @@ const ThemeDetails = (props) => {
     props.deleteTheme(props.match.params.theme_id)
   }
 
+  const isThemeAuthor = () => {
+    let selectedTheme = props.themeState.themes.filter((theme) =>
+      theme.id === parseInt(props.match.params.theme_id) ? true : false
+    )
+
+    if (selectedTheme[0]) {
+      let author =
+        selectedTheme[0].user_id === props.userState.current_user_id
+          ? true
+          : false
+
+      props.isThemeAuthor(author)
+    }
+  }
+
   return (
     <div>
       <Preview css_styles={props.reviewState.reviews_by_theme.css_styles} />
@@ -57,7 +76,9 @@ const ThemeDetails = (props) => {
               ? renderReviews()
               : 'Be the first to review!'}
           </div>
-          <button onClick={(e) => deleteTheme(e)}>Delete theme</button>
+          {props.themeState.is_author && (
+            <button onClick={(e) => deleteTheme(e)}>Delete theme</button>
+          )}
         </div>
       ) : (
         <p>"No details about this theme"</p>
