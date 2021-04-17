@@ -33,9 +33,10 @@ const ThemeReducer = (state = iState, action) => {
       return { ...state, theme_by_id: action.payload }
     case DELETE_THEME_BY_ID:
       let updated_themes = state.themes.filter(
-        (theme) => theme.id !== action.payload.deleted.playload
+        (theme) => theme.id !== action.payload.payload
       )
-      return { ...state, themes: updated_themes }
+
+      return { ...state, themes: updated_themes, is_deleted: true }
     default:
       return { ...state }
   }

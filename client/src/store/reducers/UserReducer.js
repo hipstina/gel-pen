@@ -6,7 +6,8 @@ import {
   GET_REVIEWSTHEMES_BY_USER,
   INCREMENT_LIKES,
   SET_CURRENT_USER,
-  CREATE_THEME
+  CREATE_THEME,
+  REMOVE_THEME
 } from '../types'
 
 const iState = {
@@ -32,6 +33,18 @@ const UserReducer = (state = iState, action) => {
     case CREATE_THEME:
       state.selected_user_data.themes.push(action.payload)
       return { ...state }
+    case REMOVE_THEME:
+      let updated_themes = state.selected_user_data.themes.filter(
+        (theme) => theme.id !== action.payload.payload
+      )
+
+      return {
+        ...state,
+        selected_user_data: {
+          ...state.selected_user_data.themes,
+          themes: updated_themes
+        }
+      }
     case SET_CURRENT_USER:
       return { ...state, current_user_id: action.payload }
     case INCREMENT_LIKES:

@@ -9,7 +9,8 @@ import {
   ADD_REGISTRATION,
   ADD_LOGIN,
   SET_CURRENT_USER,
-  INVALID_LOGIN
+  INVALID_LOGIN,
+  IS_THEME_AUTHOR
 } from '../types'
 
 export const RegisterUser = (req) => async (dispatch) => {
@@ -61,10 +62,16 @@ export const AddRegistration = (inputName, input) => ({
   payload: { name: inputName, input: input }
 })
 
-export const logOut = () => ({
-  type: SUBMIT_LOGIN,
-  payload: false
-})
+export const logOut = () => (
+  {
+    type: IS_THEME_AUTHOR,
+    payload: false
+  },
+  {
+    type: SUBMIT_LOGIN,
+    payload: false
+  }
+)
 
 export const CheckSession = (token) => async (dispatch) => {
   try {

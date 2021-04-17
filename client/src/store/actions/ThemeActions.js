@@ -12,7 +12,8 @@ import {
   CREATE_THEME,
   INCREMENT_LIKES,
   DELETE_THEME_BY_ID,
-  IS_THEME_AUTHOR
+  IS_THEME_AUTHOR,
+  REMOVE_THEME
 } from '../types'
 
 export const SelectedThemeId = (id) => ({
@@ -51,6 +52,10 @@ export const GetThemeById = (id) => async (dispatch) => {
       type: GET_THEME_BY_ID,
       payload: theme
     })
+    dispatch({
+      type: GET_THEME_BY_ID,
+      payload: theme
+    })
   } catch (err) {
     console.log(err)
   }
@@ -79,6 +84,10 @@ export const DeleteThemeById = (id) => async (dispatch) => {
     const deleted = await __DeleteThemeById(id)
     dispatch({
       type: DELETE_THEME_BY_ID,
+      payload: deleted
+    })
+    dispatch({
+      type: REMOVE_THEME,
       payload: deleted
     })
   } catch (err) {
