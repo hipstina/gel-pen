@@ -2,7 +2,8 @@ import {
   GET_THEMES,
   GET_THEME_BY_ID,
   DELETE_THEME_BY_ID,
-  SET_SELECTED_THEME
+  SET_SELECTED_THEME,
+  CREATE_THEME
 } from '../types'
 
 const iState = {
@@ -15,6 +16,9 @@ const ThemeReducer = (state = iState, action) => {
   switch (action.type) {
     case GET_THEMES:
       return { ...state, themes: action.payload }
+    case CREATE_THEME:
+      state.themes.push(action.payload)
+      return { ...state }
     case SET_SELECTED_THEME:
       return { ...state, selected_theme_id: action.payload }
     case GET_THEME_BY_ID:

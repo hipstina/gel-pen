@@ -13,12 +13,14 @@ const Nav = (props) => {
     <div>
       <NavLink to="/">Gel Pen</NavLink>
       <NavLink to="/profile">My Profile</NavLink>
+      <NavLink to="/browse">Browse Themes</NavLink>
     </div>
   ) : (
     <div>
       <NavLink to="/">Gel Pen</NavLink>
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/register">Create an Account</NavLink>
+      <NavLink to="/browse">Browse Themes</NavLink>
     </div>
   )
 }
