@@ -51,7 +51,7 @@ const UserReducer = (state = iState, action) => {
       const targetId = state.selected_user_data.themes.filter(
         (theme) => theme.id === action.payload
       )
-      targetId[0].likes++
+      if (targetId.length > 0) targetId[0].likes++
       return { ...state }
     default:
       return { ...state }

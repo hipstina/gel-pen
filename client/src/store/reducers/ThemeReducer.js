@@ -4,7 +4,8 @@ import {
   DELETE_THEME_BY_ID,
   SET_SELECTED_THEME,
   CREATE_THEME,
-  IS_THEME_AUTHOR
+  IS_THEME_AUTHOR,
+  INCREMENT_LIKES
 } from '../types'
 
 const iState = {
@@ -31,6 +32,12 @@ const ThemeReducer = (state = iState, action) => {
       return { ...state, selected_theme_id: action.payload }
     case GET_THEME_BY_ID:
       return { ...state, theme_by_id: action.payload }
+    case INCREMENT_LIKES:
+      const targetId = state.themes.filter(
+        (theme) => theme.id === action.payload
+      )
+      targetId[0].likes++
+      return { ...state }
     case DELETE_THEME_BY_ID:
       let updated_themes = state.themes.filter(
         (theme) => theme.id !== action.payload.payload
