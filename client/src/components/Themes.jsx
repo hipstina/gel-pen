@@ -31,12 +31,19 @@ const Themes = (props) => {
     props.incrementLikes(id, likes)
   }
 
-  const renderUserThemes = () => {
-    return props.userState.selected_user_data.themes.length > 0 ? (
-      props.userState.selected_user_data.themes
+  const renderThemes = () => {
+    let data
+    if (props.page === 'profile') {
+      data = props.userState.selected_user_data.themes
+    }
+    if (props.page === 'browse') {
+      data = props.themeState.themes
+    }
+
+    return data.length > 0 ? (
+      data
         .map((theme, idx) => (
           <div key={idx} created={theme.created_at}>
-            <p>All of my themes!</p>
             <ThemeCard
               css_styles={theme.css_styles}
               theme_id={theme.id}
@@ -62,7 +69,7 @@ const Themes = (props) => {
     <div>
       Themes container
       {props.authState.authenticated && props.userState.selected_user_data
-        ? renderUserThemes()
+        ? renderThemes()
         : 'Login to create a profile!'}
     </div>
   )

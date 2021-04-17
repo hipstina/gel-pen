@@ -6,7 +6,7 @@ const ProfilePage = (props) => {
   return (
     <div>
       <Profile {...props} />
-      <Themes {...props} />
+      <Themes {...props} page="profile" />
     </div>
   )
 }
