@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { COLOR_TOKENS } from '../../constants/colors'
 
 const mapStateToProps = (state) => {
   return {
@@ -17,16 +18,22 @@ const ColorOptions = (props) => {
         styleArr.push([selector, obj[selector]])
       }
     }
-    return styleArr.map((s, idx) => (
-      <div key={idx}>
-        {/* TODO: add more detailed labels */}
-        <label>{s[0]} </label>
+    // ADD LABELS TO COLOR OPTIONS
+    return COLOR_TOKENS.map((color, i) => (
+      <div key={i} className="color__option__wrapper">
         <input
           type="color"
-          name={s[0]}
-          value={s[1]}
-          onChange={(e) => props.handleChangeEditor(e)}
+          name={color[0]}
+          value={styleArr[i][1]} // COLOR VALUE === EDITOR STATE
+          onChange={(e) => props.handleChange(e)}
         />
+        <label>
+          {color[1].map((token, t) => (
+            <p key={t} className="color__option__label">
+              {token}
+            </p>
+          ))}
+        </label>
       </div>
     ))
   }

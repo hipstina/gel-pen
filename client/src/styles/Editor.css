@@ -3,3 +3,32 @@
   flex-flow: row nowrap;
   justify-content: space-between;
 }
+
+input[type='color'] {
+  background-color: transparent;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  margin: 0 5px;
+  padding: 1px;
+  outline: 1px solid transparent;
+  /* border-radius: 3rem; */
+  /* border: 2px solid hsl(229, 26%, 13%);*/
+  border: 0px solid transparent;
+}
+
+.color__option__wrapper {
+  display: flex;
+  flex: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 200px;
+  margin: 20px 0;
+}
+
+.color__option__label {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}

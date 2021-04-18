@@ -1,0 +1,18 @@
+.btn {
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  border: 1px solid black;
+}
+
+.btn__option,
+.btn__redirect {
+}
+
+.btn__redirect {
+  background-color: rgb(180, 204, 26);
+}

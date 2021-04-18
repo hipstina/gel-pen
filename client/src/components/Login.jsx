@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { AddLogin, LoginUserByUsername } from '../store/actions/AuthActions'
+import InputField from '../components/Editor/InputField'
+
+import '../styles/Forms.css'
 
 const mapStateToProps = (state) => {
   return {
@@ -38,23 +41,23 @@ const Login = (props) => {
         {props.authState.login_invalid && renderLoginError()}
       </p>
       <form onSubmit={(e) => handleSubmitLogin(e)}>
-        <label>Username: </label>
-        <input
-          type="text"
+        <InputField
+          label="Username "
           name="username"
           placeholder="username"
-          value={props.authState.username}
-          onChange={(e) => handleChangeLogin(e)}
+          val={props.authState.username}
+          handleChange={handleChangeLogin}
         />
-        <label>Password: </label>
-        <input
-          type="password"
+        <InputField
+          label="Password "
           name="password"
-          value={props.authState.password}
           placeholder="password"
-          onChange={(e) => handleChangeLogin(e)}
+          val={props.authState.password}
+          handleChange={handleChangeLogin}
+          type="password"
         />
-        <input type="submit" value="Login" />
+
+        <input type="submit" value="Login" className="btn btn__redirect" />
       </form>
     </div>
   )

@@ -10,6 +10,7 @@ import ColorOptions from '../../components/Editor/ColorOptions'
 import InputField from '../../components/Editor/InputField'
 import FontOptions from '../../components/Editor/FontOptions'
 import '../../styles/Editor.css'
+import '../../styles/buttons.css'
 
 const mapStateToProps = (state) => {
   return {
@@ -68,26 +69,31 @@ const Editor = (props) => {
           label="Theme title"
           val={theme_name}
           name="theme_name"
-          handleChangeEditor={handleChangeEditor}
+          placeholder="Add a title"
+          handleChange={handleChangeEditor}
         />
         <InputField
           label="Description"
           val={theme_description}
           name="theme_description"
-          handleChangeEditor={handleChangeEditor}
+          placeholder="Add description"
+          handleChange={handleChangeEditor}
         />
         <FontOptions
           font_type={font_type}
           setFont={(e) => setFont(e)}
           name="font_type"
         />
-        <ColorOptions handleChangeEditor={handleChangeEditor} />
+        <ColorOptions handleChange={handleChangeEditor} />
         <InputField val={current ? current : 1} type="hidden" />
 
         {props.authState.authenticated ? (
           <InputField val="Publish Theme" type="submit" />
         ) : (
-          <button onClick={() => props.history.push('/register')}>
+          <button
+            onClick={() => props.history.push('/register')}
+            className="btn btn__redirect"
+          >
             Sign up to publish your theme!
           </button>
         )}
