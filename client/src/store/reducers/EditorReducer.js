@@ -26,6 +26,8 @@ const iState = {
     entity: '#67cdcc',
     url: '#67cdcc'
   },
+  font_type: 'IBM Plex Mono',
+  lang: '',
   theme_description: '',
   theme_name: '',
   user_id: 1,
@@ -52,7 +54,7 @@ const EditorReducer = (state = iState, action) => {
     case CSS_SUBMITTED:
       return {
         ...state,
-        css_submitted: !state.css_submitted,
+        css_submitted: true,
         theme_description: '',
         theme_name: ''
       }

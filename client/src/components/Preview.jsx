@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Prism from 'prismjs'
 import '../styles/Preview.css'
 import { connect } from 'react-redux'
 import { AddCSS, CSS_Submitted } from '../store/actions/EditorActions.js'
+import { JS, JSX, PYTHON, MARKDOWN, HTML, CSS } from '../constants/codeblocks'
+import PreviewBtns from '../components/PreviewBtns'
 
 const mapStateToProps = (state) => {
   return {
@@ -17,60 +19,14 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Preview = (props) => {
+  const [select, setSelect] = useState(0)
+
+  let codeSnippet = [JSX, JS, PYTHON, MARKDOWN, HTML, CSS]
+
   useEffect(() => {
     setTimeout(() => Prism.highlightAll(), 0)
-  }, [])
+  }, [select])
 
-  const codeSnippetJSX = `        
-        const App = () => {
-          return (
-            <h1>the codes</h1>
-          );
-        }
-
-        ReactDOM.render(<App />, document.getElementById("root"));
-     `
-  const codeSnippetJS = `Token.stringify = function stringify(o, language) {
-	if (typeof o == 'string') {
-		return o;
-	}
-	if (Array.isArray(o)) {
-		var s = '';
-		o.forEach(function (e) {
-			s += stringify(e, language);
-		});
-		return s;
-	}
-  
-	_.hooks.run('wrap', env);
-
-	var attributes = '';
-	for (var name in env.attributes) {
-		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
-	}
-
-	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
-};
-
-/**
- * @param {RegExp} pattern
- * @param {number} pos
- * @param {string} text
- * @param {boolean} lookbehind
- * @returns {RegExpExecArray | null}
- */
-function matchPattern(pattern, pos, text, lookbehind) {
-	pattern.lastIndex = pos;
-	var match = pattern.exec(text);
-	if (match && lookbehind && match[1]) {
-		// change the match to remove the text matched by the Prism lookbehind group
-		var lookbehindLength = match[1].length;
-		match.index += lookbehindLength;
-		match[0] = match[0].slice(lookbehindLength);
-	}
-	return match;
-}
-`
   // CONDITIONALLY DESCTRUCTURE STYLE OBJ PROPS
   // DEFAULT TO CURRENT STATES STYLE OBJ
   const {
@@ -101,7 +57,8 @@ function matchPattern(pattern, pos, text, lookbehind) {
 
   return (
     <div>
-      Preview
+      <PreviewBtns select={select} setSelect={setSelect} />
+
       <pre
         style={{
           '--text': `${text}`,
@@ -126,10 +83,15 @@ function matchPattern(pattern, pos, text, lookbehind) {
           '--variable': `${variable}`,
           '--operator': `${operator}`,
           '--entity': `${entity}`,
-          '--url': `${url}`
+          '--url': `${url}`,
+          '--font_type': `${
+            props.font_type ? props.font_type : props.editorState.font_type
+          }`
         }}
       >
-        <code className="language-js">{codeSnippetJSX}</code>
+        <code className="language-js preview__wrapper">
+          {codeSnippet[select]}
+        </code>
       </pre>
     </div>
   )

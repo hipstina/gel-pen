@@ -66,6 +66,7 @@ export const logOut = () => (
   {
     type: IS_THEME_AUTHOR,
     payload: false
+    // eslint-disable-next-line no-sequences
   },
   {
     type: SUBMIT_LOGIN,
@@ -76,7 +77,7 @@ export const logOut = () => (
 export const CheckSession = (token) => async (dispatch) => {
   try {
     const validated = await __CheckSession(token)
-    if (token) {
+    if (token && validated) {
       dispatch({
         type: SUBMIT_LOGIN,
         payload: true
