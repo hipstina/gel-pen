@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Prism from 'prismjs'
 import '../styles/Preview.css'
 import { connect } from 'react-redux'
 import { AddCSS, CSS_Submitted } from '../store/actions/EditorActions.js'
+import { JS, JSX, PYTHON, MARKDOWN, HTML, CSS } from '../constants/codeblocks'
 
 const mapStateToProps = (state) => {
   return {
@@ -17,60 +18,15 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Preview = (props) => {
+  console.log('Preview props', props)
+  const [select, setSelect] = useState(0)
+
+  let codeSnippet = [JS, JSX, PYTHON, MARKDOWN, HTML, CSS]
+
   useEffect(() => {
     setTimeout(() => Prism.highlightAll(), 0)
-  }, [])
+  }, [select])
 
-  const codeSnippetJSX = `        
-        const App = () => {
-          return (
-            <h1>the codes</h1>
-          );
-        }
-
-        ReactDOM.render(<App />, document.getElementById("root"));
-     `
-  const codeSnippetJS = `Token.stringify = function stringify(o, language) {
-	if (typeof o == 'string') {
-		return o;
-	}
-	if (Array.isArray(o)) {
-		var s = '';
-		o.forEach(function (e) {
-			s += stringify(e, language);
-		});
-		return s;
-	}
-  
-	_.hooks.run('wrap', env);
-
-	var attributes = '';
-	for (var name in env.attributes) {
-		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
-	}
-
-	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
-};
-
-/**
- * @param {RegExp} pattern
- * @param {number} pos
- * @param {string} text
- * @param {boolean} lookbehind
- * @returns {RegExpExecArray | null}
- */
-function matchPattern(pattern, pos, text, lookbehind) {
-	pattern.lastIndex = pos;
-	var match = pattern.exec(text);
-	if (match && lookbehind && match[1]) {
-		// change the match to remove the text matched by the Prism lookbehind group
-		var lookbehindLength = match[1].length;
-		match.index += lookbehindLength;
-		match[0] = match[0].slice(lookbehindLength);
-	}
-	return match;
-}
-`
   // CONDITIONALLY DESCTRUCTURE STYLE OBJ PROPS
   // DEFAULT TO CURRENT STATES STYLE OBJ
   const {
@@ -99,9 +55,61 @@ function matchPattern(pattern, pos, text, lookbehind) {
     url
   } = props.css_styles ? props.css_styles : props.editorState.css_styles
 
+  // const { font_type } = props.font_type
+  //   ? props.font_type
+  //   : props.editorState.font_type
+
+  // const { lang } = props ? props.lang : props.editorState.lang
+
+  console.log('Preview props', props.font_type, props.editorState.font_type)
+
+  const setCodeblock = (e) => {
+    console.log('e.target.name', e.target.name)
+    switch (e.target.name) {
+      case 'jsx':
+        setSelect(0)
+        break
+      case 'js':
+        setSelect(1)
+        break
+      case 'python':
+        setSelect(2)
+        break
+      case 'markdown':
+        setSelect(3)
+        break
+      case 'html':
+        setSelect(4)
+        break
+      case 'css':
+        setSelect(5)
+        break
+      default:
+        setSelect(0)
+        break
+    }
+  }
+
   return (
     <div>
-      Preview
+      <button onClick={(e) => setCodeblock(e)} name="jsx">
+        JSX
+      </button>
+      <button onClick={(e) => setCodeblock(e)} name="js">
+        JS
+      </button>
+      <button onClick={(e) => setCodeblock(e)} name="python">
+        Python
+      </button>
+      <button onClick={(e) => setCodeblock(e)} name="markdown">
+        Markdown
+      </button>
+      <button onClick={(e) => setCodeblock(e)} name="html">
+        HTML
+      </button>
+      <button onClick={(e) => setCodeblock(e)} name="css">
+        CSS
+      </button>
       <pre
         style={{
           '--text': `${text}`,
@@ -126,10 +134,13 @@ function matchPattern(pattern, pos, text, lookbehind) {
           '--variable': `${variable}`,
           '--operator': `${operator}`,
           '--entity': `${entity}`,
-          '--url': `${url}`
+          '--url': `${url}`,
+          '--font_type': `${
+            props.font_type ? props.font_type : props.editorState.font_type
+          }`
         }}
       >
-        <code className="language-js">{codeSnippetJSX}</code>
+        <code className="language-js">{codeSnippet[select]}</code>
       </pre>
     </div>
   )

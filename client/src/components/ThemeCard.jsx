@@ -7,8 +7,8 @@ const ThemeCard = (props) => {
       ThemeCard
       {props ? (
         <div>
-          <h3>THEME: {props.themeName}</h3>
-          <Preview css_styles={props.css_styles} />
+          <h3>THEME: {props.theme_name}</h3>
+          <Preview css_styles={props.css_styles} font_type={props.font_type} />
           <button
             onClick={(e) => props.onClick(e, props.theme_id, props.likes)}
           >

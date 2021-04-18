@@ -37,7 +37,6 @@ const UserReducer = (state = iState, action) => {
       let updated_themes = state.selected_user_data.themes.filter(
         (theme) => theme.id !== action.payload.payload
       )
-
       return {
         ...state,
         selected_user_data: {

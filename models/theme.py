@@ -10,6 +10,8 @@ class Theme(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     css_styles = db.Column(JSONB)
     theme_name = db.Column(db.String(80))
+    font_type = db.Column(db.String(80), nullable=True)
+    lang = db.Column(db.String(80), nullable=True)
     likes = db.Column(db.Integer)
     theme_description = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, nullable=False,
@@ -23,9 +25,11 @@ class Theme(db.Model):
     reviews = db.relationship("Review", cascade='all', backref=db.backref(
         'reviews', lazy=True))
 
-    def __init__(self, css_styles, theme_name, likes, theme_description, user_id):
+    def __init__(self, css_styles, theme_name, font_type, lang, likes, theme_description, user_id):
         self.css_styles = css_styles
         self.theme_name = theme_name
+        self.font_type = font_type
+        self.lang = lang
         self.likes = likes
         self.theme_description = theme_description
         self.user_id = user_id
@@ -35,6 +39,8 @@ class Theme(db.Model):
             "id": self.id,
             "css_styles": self.css_styles,
             "theme_name": self.theme_name,
+            "font_type": self.font_type,
+            "lang": self.lang,
             "likes": self.likes,
             "theme_description": self.theme_description,
             "created_at": str(self.created_at),
