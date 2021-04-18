@@ -20,24 +20,6 @@ export const JS = `Token.stringify = function stringify(o, language) {
 	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
 };
 
-/**
- * @param {RegExp} pattern
- * @param {number} pos
- * @param {string} text
- * @param {boolean} lookbehind
- * @returns {RegExpExecArray | null}
- */
-function matchPattern(pattern, pos, text, lookbehind) {
-	pattern.lastIndex = pos;
-	var match = pattern.exec(text);
-	if (match && lookbehind && match[1]) {
-		// change the match to remove the text matched by the Prism lookbehind group
-		var lookbehindLength = match[1].length;
-		match.index += lookbehindLength;
-		match[0] = match[0].slice(lookbehindLength);
-	}
-	return match;
-}
 `
 
 export const JSX = `        

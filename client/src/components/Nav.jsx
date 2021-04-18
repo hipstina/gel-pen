@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import '../styles/Nav.css'
 
 const mapStateToProps = (state) => {
   return {
@@ -11,16 +12,20 @@ const mapStateToProps = (state) => {
 const Nav = (props) => {
   return props.authState.authenticated ? (
     <div>
-      <NavLink to="/">Gel Pen</NavLink>
-      <NavLink to="/profile">My Profile</NavLink>
-      <NavLink to="/browse">Browse Themes</NavLink>
+      <nav className="nav__wrapper">
+        <NavLink to="/">Gel Pen</NavLink>
+        <NavLink to="/browse">Browse Themes</NavLink>
+        <NavLink to="/profile">My Profile</NavLink>
+      </nav>
     </div>
   ) : (
     <div>
-      <NavLink to="/">Gel Pen</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/register">Create an Account</NavLink>
-      <NavLink to="/browse">Browse Themes</NavLink>
+      <nav className="nav__wrapper">
+        <NavLink to="/">Gel Pen</NavLink>
+        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/register">Create an Account</NavLink>
+        <NavLink to="/browse">Browse Themes</NavLink>
+      </nav>
     </div>
   )
 }

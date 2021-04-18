@@ -4,6 +4,7 @@ import '../styles/Preview.css'
 import { connect } from 'react-redux'
 import { AddCSS, CSS_Submitted } from '../store/actions/EditorActions.js'
 import { JS, JSX, PYTHON, MARKDOWN, HTML, CSS } from '../constants/codeblocks'
+import PreviewBtns from '../components/PreviewBtns'
 
 const mapStateToProps = (state) => {
   return {
@@ -18,10 +19,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Preview = (props) => {
-  console.log('Preview props', props)
   const [select, setSelect] = useState(0)
 
-  let codeSnippet = [JS, JSX, PYTHON, MARKDOWN, HTML, CSS]
+  let codeSnippet = [JSX, JS, PYTHON, MARKDOWN, HTML, CSS]
 
   useEffect(() => {
     setTimeout(() => Prism.highlightAll(), 0)
@@ -55,61 +55,10 @@ const Preview = (props) => {
     url
   } = props.css_styles ? props.css_styles : props.editorState.css_styles
 
-  // const { font_type } = props.font_type
-  //   ? props.font_type
-  //   : props.editorState.font_type
-
-  // const { lang } = props ? props.lang : props.editorState.lang
-
-  console.log('Preview props', props.font_type, props.editorState.font_type)
-
-  const setCodeblock = (e) => {
-    console.log('e.target.name', e.target.name)
-    switch (e.target.name) {
-      case 'jsx':
-        setSelect(0)
-        break
-      case 'js':
-        setSelect(1)
-        break
-      case 'python':
-        setSelect(2)
-        break
-      case 'markdown':
-        setSelect(3)
-        break
-      case 'html':
-        setSelect(4)
-        break
-      case 'css':
-        setSelect(5)
-        break
-      default:
-        setSelect(0)
-        break
-    }
-  }
-
   return (
     <div>
-      <button onClick={(e) => setCodeblock(e)} name="jsx">
-        JSX
-      </button>
-      <button onClick={(e) => setCodeblock(e)} name="js">
-        JS
-      </button>
-      <button onClick={(e) => setCodeblock(e)} name="python">
-        Python
-      </button>
-      <button onClick={(e) => setCodeblock(e)} name="markdown">
-        Markdown
-      </button>
-      <button onClick={(e) => setCodeblock(e)} name="html">
-        HTML
-      </button>
-      <button onClick={(e) => setCodeblock(e)} name="css">
-        CSS
-      </button>
+      <PreviewBtns select={select} setSelect={setSelect} />
+
       <pre
         style={{
           '--text': `${text}`,
@@ -140,7 +89,9 @@ const Preview = (props) => {
           }`
         }}
       >
-        <code className="language-js">{codeSnippet[select]}</code>
+        <code className="language-js preview__wrapper">
+          {codeSnippet[select]}
+        </code>
       </pre>
     </div>
   )

@@ -62,7 +62,7 @@ const Editor = (props) => {
   }
 
   return (
-    <div className="">
+    <div className="editor__wrapper">
       <form onSubmit={handleSubmitEditor}>
         <InputField
           label="Theme title"
