@@ -29,22 +29,22 @@ const PreviewBtns = (props) => {
 
   return (
     <div>
-      <button onClick={(e) => setCodeblock(e)} name="jsx">
+      <button className="btn" onClick={(e) => setCodeblock(e)} name="jsx">
         JSX
       </button>
-      <button onClick={(e) => setCodeblock(e)} name="js">
+      <button className="btn" onClick={(e) => setCodeblock(e)} name="js">
         JS
       </button>
-      <button onClick={(e) => setCodeblock(e)} name="python">
+      <button className="btn" onClick={(e) => setCodeblock(e)} name="python">
         Python
       </button>
-      <button onClick={(e) => setCodeblock(e)} name="markdown">
+      <button className="btn" onClick={(e) => setCodeblock(e)} name="markdown">
         Markdown
       </button>
-      <button onClick={(e) => setCodeblock(e)} name="html">
+      <button className="btn" onClick={(e) => setCodeblock(e)} name="html">
         HTML
       </button>
-      <button onClick={(e) => setCodeblock(e)} name="css">
+      <button className="btn" onClick={(e) => setCodeblock(e)} name="css">
         CSS
       </button>
     </div>

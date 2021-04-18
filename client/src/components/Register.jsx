@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { RegisterUser, AddRegistration } from '../store/actions/AuthActions'
+import '../styles/Forms.css'
+import InputField from '../components/Editor/InputField'
 
 const mapStateToProps = (state) => {
   return {
@@ -32,25 +34,31 @@ const Register = (props) => {
     <div>
       <h2>Register</h2>
       <form onSubmit={(e) => handleSubmitLogin(e)}>
-        <label>Username: </label>
-        <input
-          type="text"
+        <InputField
+          label="Username "
           name="username"
           placeholder="username"
-          onChange={(e) => handleChangeLogin(e)}
+          val={props.authState.username}
+          handleChange={handleChangeLogin}
         />
-        <label>Password: </label>
-        <input
-          type="password"
+        <InputField
+          label="Password "
           name="password"
           placeholder="password"
-          onChange={(e) => handleChangeLogin(e)}
+          val={props.authState.password}
+          handleChange={handleChangeLogin}
+          type="password"
         />
 
-        <input type="submit" value="Sign up" />
+        <input type="submit" value="Sign up" className="btn btn__redirect" />
       </form>
       <h3>Already have an account?</h3>
-      <button onClick={() => props.history.push('/login')}>Sign in</button>
+      <button
+        onClick={() => props.history.push('/login')}
+        className="btn btn__redirect"
+      >
+        Sign in
+      </button>
     </div>
   )
 }

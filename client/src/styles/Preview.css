@@ -6,38 +6,42 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
  * @author Rose Pritchard
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=IBM+Plex+Mono:wght@400&family=Overpass+Mono&family=PT+Mono&family=Roboto+Mono:wght@400&family=Metrophobic&family=Jura:wght@600&display=swap');
+
 :root {
   --text: #cccccc;
   --bg: #2d2d2d;
   --comment: #999;
   --punct: #cccccc;
   --tags: #e2777a;
-  --attr_name: #e2777a;
+  /* --attr_name: #e2777a; */
   --func_name: #e2777a;
   --bool: #f08d49;
-  --number: #f08d49;
-  --func: #f08d49;
+  /* --number: #f08d49;
+  --func: #f08d49; */
   --property: #f8c555;
-  --class_name: #f8c555;
-  --constant: #f8c555;
+  /* --class_name: #f8c555;
+  --constant: #f8c555; */
   --selector: #cc99cd;
-  --keyword: #cc99cd;
+  /* --keyword: #cc99cd; */
   --str: #7ec699;
-  --charact: #7ec699;
+  /* --charact: #7ec699;
   --attr_value: #7ec699;
   --regx: #7ec699;
-  --variable: #7ec699;
+  --variable: #7ec699; */
   --operator: #67cdcc;
-  --entity: #67cdcc;
-  --url: #67cdcc;
+  /* --entity: #67cdcc;
+  --url: #67cdcc; */
+  --font_type: 'Fira Mono';
 }
 
 code[class*='language-'],
 pre[class*='language-'] {
   color: var(--text);
   background: none;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  /* font-size: 1em; */
+  font-family: var(--font_type);
+  font-size: 1sem;
+  font-weight: 500;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -55,19 +59,9 @@ pre[class*='language-'] {
   hyphens: none;
 }
 
-pre {
-  border-radius: 0.8rem;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-code {
-  font-size: 14px;
-}
-
 /* Code blocks */
 pre[class*='language-'] {
-  padding: 1em;
+  padding: 5em;
   margin: 0.5em 0;
   overflow: auto;
 }

@@ -13,18 +13,32 @@ const Nav = (props) => {
   return props.authState.authenticated ? (
     <div>
       <nav className="nav__wrapper">
-        <NavLink to="/">Gel Pen</NavLink>
-        <NavLink to="/browse">Browse Themes</NavLink>
-        <NavLink to="/profile">My Profile</NavLink>
+        <NavLink exact to="/" className="logo__">
+          Gel Pen
+        </NavLink>
+        <NavLink to="/browse" className="nav__item">
+          Browse Themes
+        </NavLink>
+        <NavLink to="/profile" className="nav__item">
+          My Profile
+        </NavLink>
       </nav>
     </div>
   ) : (
     <div>
       <nav className="nav__wrapper">
-        <NavLink to="/">Gel Pen</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/register">Create an Account</NavLink>
-        <NavLink to="/browse">Browse Themes</NavLink>
+        <NavLink exact to="/" className="logo__">
+          Gel Pen
+        </NavLink>
+        <NavLink to="/login" className="nav__item">
+          Login
+        </NavLink>
+        <NavLink to="/register" className="nav__item">
+          Create an Account
+        </NavLink>
+        <NavLink to="/browse" className="nav__item">
+          Browse Themes
+        </NavLink>
       </nav>
     </div>
   )
