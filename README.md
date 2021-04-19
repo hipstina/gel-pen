@@ -21,13 +21,19 @@ To get started, clone this repo to your local machine.
 $ git clone https://github.com/hipstina/gel-pen.git
 ```
 
-Download the dependencies for the server
+This project is built with [Prism.js](https://prismjs.com/). You will need to install Prism.js power your syntax highlighting themes.
+```shell
+$ npm i prismjs
+```
+
+
+Install the dependencies for the server
 ```shell
 $ cd gel-pen
 $ npm i 
 ```
 
-Download the dependencies for client
+Install the dependencies for client
 ```shell
 $ cd client
 $ npm i
@@ -40,6 +46,8 @@ $ npm i
 
 ![gel-pen wireframe](./assets/gel-pen-wireframe.png)
 
+![gel-pen final](./assets/gel-pen-screenshot.png)
+
 
 ### **Future Updates**
 Track the development of this project on Trello: https://trello.com/b/LyINHY6A/gel-pen
@@ -47,7 +55,10 @@ Track the development of this project on Trello: https://trello.com/b/LyINHY6A/g
 
 ### **Credits**
 
-Diagrams & wireframe built with [Lucid](https://lucid.app/)
+[Prism.js](https://prismjs.com/)
 
-This project was inspired by:
 [Night Owl](https://github.com/sdras/night-owl-vscode-theme) - a VS code theme by Sarah Drasner 
+
+[CSS Variables for React Devs](https://www.joshwcomeau.com/css/css-variables-for-react-devs/) by Josh Comeau
+
+Diagrams & wireframe built with [Lucid](https://lucid.app/)
