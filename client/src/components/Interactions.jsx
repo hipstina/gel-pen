@@ -1,8 +1,8 @@
 import React from 'react'
-import ReviewCard from '../components/ReviewCard'
 import '../styles/buttons.css'
 
 const Interactions = (props) => {
+  // console.log('interactions', props)
   return (
     <div className="intxn__wrapper">
       {/* <ReviewCard /> */}
@@ -22,13 +22,6 @@ const Interactions = (props) => {
       >
         <span className="btn__label">Details</span>
       </button>
-      {/* 
-  LIKE BUTTON
-  LIKE COUNT
-  REVIEWS
-  REVIEW FORM
-  EXPORT
-   */}
     </div>
   )
 }

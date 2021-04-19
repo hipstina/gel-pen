@@ -49,6 +49,7 @@ const Themes = (props) => {
               key={idx}
               created={theme.created_at}
               theme_name={theme.theme_name}
+              likes={theme.likes}
             >
               <ThemeCard
                 page={props.page}
@@ -67,15 +68,7 @@ const Themes = (props) => {
             </div>
           ))
           .sort((a, b) => {
-            // console.log(
-            //   a.props.theme_name,
-            //   // moment(a.props.created),
-            //   moment(a.props.created).utcOffset(-840).format('YYYY-MM-DD HH:mm')
-            // )
-            return (
-              moment(a.props.created).format() <
-              moment(b.props.created).format()
-            )
+            return a.props.likes < b.props.likes
           })
       ) : (
         <div>

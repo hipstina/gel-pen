@@ -66,12 +66,7 @@ const Preview = (props) => {
       props.font_type ? props.font_type : props.editorState.font_type
     }`
   }
-  console.log(
-    'FONT',
-    props.font_type ? props.font_type : props.editorState.font_type,
-    props.font_type,
-    props.editorState.font_type
-  )
+
   let codeSnippet = [JS, JSX, PYTHON, MARKDOWN, HTML, CSS]
 
   const stringifyStyle = () => {
@@ -101,7 +96,12 @@ const Preview = (props) => {
 
   return (
     <div>
-      <PreviewBtns select={select} setSelect={setSelect} />
+      {props.page === 'browse' ? null : props.page === 'editor' ? (
+        <PreviewBtns select={select} setSelect={setSelect} page={props.page} />
+      ) : props.page === 'profile' ? null : (
+        <PreviewBtns select={select} setSelect={setSelect} page={props.page} />
+      )}
+
       <pre
         className={
           props.page === 'browse'

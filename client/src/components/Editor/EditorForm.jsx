@@ -88,7 +88,11 @@ const Editor = (props) => {
         <InputField val={current ? current : 1} type="hidden" />
 
         {props.authState.authenticated ? (
-          <InputField val="Publish Theme" type="submit" />
+          <input
+            value="Publish Theme"
+            type="submit"
+            className="btn btn__redirect btn__submit"
+          />
         ) : (
           <button
             onClick={() => props.history.push('/register')}

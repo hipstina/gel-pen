@@ -4,3 +4,12 @@
   justify-content: flex-end;
   margin: 0 auto;
 }
+
+.theme__card {
+  width: 100%;
+  margin: 70px 0;
+}
+
+.theme__details__description {
+  font-style: italic;
+}

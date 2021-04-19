@@ -6,6 +6,7 @@ import {
   ReviewSubmitted,
   CreateReview
 } from '../store/actions/ReviewActions'
+import '../styles/buttons.css'
 
 const mapStateToProps = (state) => {
   return {
@@ -41,8 +42,9 @@ const ReviewForm = (props) => {
   }
 
   return (
-    <div>
+    <div className="form__wrapper__review">
       <h3>Submit a review:</h3>
+
       {props.authState.authenticated ? (
         <form onSubmit={(e) => handleSubmitReview(e)}>
           {/* TODO: CALCULATE CURRENT USER TO AUTOFILL AUTHENTICATED USER */}
@@ -53,26 +55,35 @@ const ReviewForm = (props) => {
             name="title"
             placeholder="review title!"
             onChange={(e) => handleChangeReview(e)}
+            className="input__underline "
           />
+          <br />
           <input
             type="text"
             name="content"
+            // value=""
             placeholder="what a super cool theme!"
             onChange={(e) => handleChangeReview(e)}
+            className="input__underline "
           />
-
+          <br />
           <input
             type="hidden"
             name="theme_id"
             value={props.match.params.theme_id}
             onChange={(e) => handleChangeReview(e)}
           />
-          <input type="submit" value="Submit Review" />
+          <input
+            type="submit"
+            value="Submit Review"
+            className="btn btn__redirect"
+          />
         </form>
       ) : (
         <button
           value="Register"
           onClick={() => props.history.push('/register')}
+          className="btn btn__redirect"
         >
           Sign up to leave a review!
         </button>

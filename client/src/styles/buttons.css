@@ -2,9 +2,12 @@
 
 .btn {
   background-color: transparent;
+  border-radius: 0.15rem;
+  padding: 10px 15px;
   border: 1px solid transparent;
   cursor: pointer;
   font-size: 14px;
+  margin: 0 0 50px 0;
 }
 
 /* .btn:hover {
@@ -17,6 +20,16 @@
 
 .btn__redirect {
   background-color: rgb(180, 204, 26);
+  /* border: 1.5px solid hsl(229, 26%, 13%); */
+  border: 1.5px solid rgb(156, 177, 19);
+  color: hsl(229, 26%, 13%);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.btn__redirect:hover {
+  background-color: rgb(165, 186, 32);
 }
 
 .like__btn::before {
@@ -36,6 +49,10 @@
   color: hsl(229, 26%, 13%);
 }
 
+.more__btn:hover::before {
+  color: hsl(273, 83%, 54%);
+}
+
 .intxn__wrapper {
   display: flex;
   flex-flow: row;
@@ -47,4 +64,22 @@
 .btn__label {
   padding: 5px 15px 20px 8px;
   font-size: 15px;
+}
+
+.preview__btn {
+  border: 1px solid transparent;
+}
+
+.preview__btn:hover {
+  border: 1px solid hsl(229, 26%, 13%);
+}
+
+.btn__delete {
+  background-color: rgb(245, 84, 146);
+  margin: 30px 0;
+}
+
+.btn__submit {
+  margin: 50px 0;
+  padding: 15px 30px;
 }

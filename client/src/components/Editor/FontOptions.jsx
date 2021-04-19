@@ -15,8 +15,8 @@ const FontOptions = (props) => {
       </option>
     ))
   return (
-    <div>
-      <label>Font</label>
+    <div className="font__option">
+      <label className="font__option__label">Font</label>
       <select className="select-css">{renderFonts()}</select>
     </div>
   )

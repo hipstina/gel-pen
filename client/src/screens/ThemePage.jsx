@@ -6,8 +6,8 @@ import ReviewForm from '../components/ReviewForm'
 const ThemePage = (props) => {
   return (
     <div>
+      <Interactions {...props} />
       <ThemeDetail {...props} />
-      <Interactions />
       <ReviewForm {...props} />
     </div>
   )
