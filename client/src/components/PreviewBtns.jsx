@@ -3,10 +3,10 @@ import React from 'react'
 const PreviewBtns = (props) => {
   const setCodeblock = (e) => {
     switch (e.target.name) {
-      case 'jsx':
+      case 'js':
         props.setSelect(0)
         break
-      case 'js':
+      case 'jsx':
         props.setSelect(1)
         break
       case 'python':

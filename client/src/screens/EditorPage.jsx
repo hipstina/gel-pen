@@ -7,7 +7,7 @@ const EditorPage = (props) => {
   return (
     <div className="editor__preview__wrapper">
       <EditorForm {...props} />
-      <Preview />
+      <Preview page="editor" />
     </div>
   )
 }

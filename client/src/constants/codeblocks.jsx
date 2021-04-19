@@ -14,10 +14,12 @@ export const JS = `Token.stringify = function stringify(o, language) {
 
 	var attributes = '';
 	for (var name in env.attributes) {
-		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
+		attributes += ' ' + name + '="' + (env.attributes[name] || '')
+    .replace(/"/g, '&quot;') + '"';
 	}
 
-	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' 
+  + attributes + '>' + env.content + '</' + env.tag + '>';
 };
 
 `
@@ -39,7 +41,8 @@ export const PYTHON = `class Person:
   def printname(self):
     print(self.firstname, self.lastname)
 
-#Use the Person class to create an object, and then execute the printname method:
+#Use the Person class to create an object, 
+and then execute the printname method:
 
 x = Person("John", "Doe")
 x.printname()`
@@ -71,8 +74,10 @@ export const CSS = `.preview__wrapper {
   right: 0;
 
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
   border-radius: 0.1rem;
   width: 50%;

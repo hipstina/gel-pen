@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import moment from 'moment-timezone'
 import ThemeCard from '../components/ThemeCard'
 import { SelectedThemeId, UpdateLikeCount } from '../store/actions/ThemeActions'
+import '../styles/Themes.css'
 
 const mapStateToProps = (state) => {
   return {
@@ -50,6 +51,7 @@ const Themes = (props) => {
               theme_name={theme.theme_name}
             >
               <ThemeCard
+                page={props.page}
                 font_type={theme.font_type}
                 lang={theme.lang}
                 css_styles={theme.css_styles}
@@ -60,8 +62,8 @@ const Themes = (props) => {
                   .utcOffset(-840)
                   .format('YYYY-MM-DD HH:mm')}
                 onClick={(e) => incLikes(e, theme.id, theme.likes)}
+                targetTheme={TargetTheme}
               />
-              <button onClick={(e) => TargetTheme(e, theme.id)}>+</button>
             </div>
           ))
           .sort((a, b) => {
@@ -85,7 +87,7 @@ const Themes = (props) => {
       )
   }
   return (
-    <div>
+    <div className={props.page === 'browse' ? 'preview__grid' : ''}>
       {props.page === 'browse'
         ? renderThemes()
         : props.page === 'profile' &&

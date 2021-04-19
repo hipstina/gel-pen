@@ -1,3 +1,5 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+
 .btn {
   background-color: transparent;
   border: 1px solid transparent;
@@ -5,9 +7,9 @@
   font-size: 14px;
 }
 
-.btn:hover {
+/* .btn:hover {
   border: 1px solid black;
-}
+} */
 
 .btn__option,
 .btn__redirect {
@@ -15,4 +17,34 @@
 
 .btn__redirect {
   background-color: rgb(180, 204, 26);
+}
+
+.like__btn::before {
+  content: ' \f005';
+  font-family: FontAwesome;
+  color: hsl(229, 26%, 13%);
+  font-size: 20px;
+}
+.like__btn:hover::before {
+  color: hsl(76, 83%, 54%);
+}
+
+.more__btn:before {
+  content: ' \f067 ';
+  font-family: FontAwesome;
+  font-size: 20px;
+  color: hsl(229, 26%, 13%);
+}
+
+.intxn__wrapper {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  /* background-color: hsl(229, 26%, 13%);
+  color: #bfbfbf; */
+}
+
+.btn__label {
+  padding: 5px 15px 20px 8px;
+  font-size: 15px;
 }
