@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { GetReviewsThemesByUser } from '../store/actions/UserActions'
 import { logOut } from '../store/actions/AuthActions'
+import '../styles/Profile.css'
 
 const mapStateToProps = (state) => {
   return {
@@ -24,10 +25,17 @@ const Profile = (props) => {
     props.history.push(`/login`)
   }
   return (
-    <div>
-      Profile
+    <div className="profile__wrapper">
+      <div className="profile__avatar"></div>
+      <span className="profile__username">
+        {props.authState.username
+          ? props.authState.username
+          : props.userState.selected_user_data.username}
+      </span>
       {props.authState.authenticated && (
-        <button onClick={logOut}>Logout</button>
+        <button onClick={logOut} className="btn profile__logout btn__redirect">
+          Logout
+        </button>
       )}
       {/* 
       CURRENT USER PROFILE: 

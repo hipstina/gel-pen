@@ -31,7 +31,7 @@ const Register = (props) => {
   }
 
   return (
-    <div>
+    <div className="form__wrapper">
       <h2>Register</h2>
       <form onSubmit={(e) => handleSubmitLogin(e)}>
         <InputField
@@ -52,6 +52,10 @@ const Register = (props) => {
 
         <input type="submit" value="Sign up" className="btn btn__redirect" />
       </form>
+      <br />
+      <br />
+      <br />
+      <br />
       <h3>Already have an account?</h3>
       <button
         onClick={() => props.history.push('/login')}

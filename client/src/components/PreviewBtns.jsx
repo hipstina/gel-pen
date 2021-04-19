@@ -3,10 +3,10 @@ import React from 'react'
 const PreviewBtns = (props) => {
   const setCodeblock = (e) => {
     switch (e.target.name) {
-      case 'jsx':
+      case 'js':
         props.setSelect(0)
         break
-      case 'js':
+      case 'jsx':
         props.setSelect(1)
         break
       case 'python':
@@ -28,23 +28,57 @@ const PreviewBtns = (props) => {
   }
 
   return (
-    <div>
-      <button className="btn" onClick={(e) => setCodeblock(e)} name="jsx">
+    <div
+      className={
+        props.page === 'browse'
+          ? 'previewBtns__wrapper__browse'
+          : props.page === 'editor'
+          ? 'previewBtns__wrapper__editor'
+          : props.page === 'profile'
+          ? 'previewBtns__wrapper__profile'
+          : 'previewBtn__wrapper__detail'
+      }
+    >
+      <button
+        className="btn preview__btn"
+        onClick={(e) => setCodeblock(e)}
+        name="jsx"
+      >
         JSX
       </button>
-      <button className="btn" onClick={(e) => setCodeblock(e)} name="js">
+      <button
+        className="btn preview__btn"
+        onClick={(e) => setCodeblock(e)}
+        name="js"
+      >
         JS
       </button>
-      <button className="btn" onClick={(e) => setCodeblock(e)} name="python">
+      <button
+        className="btn preview__btn"
+        onClick={(e) => setCodeblock(e)}
+        name="python"
+      >
         Python
       </button>
-      <button className="btn" onClick={(e) => setCodeblock(e)} name="markdown">
+      <button
+        className="btn preview__btn"
+        onClick={(e) => setCodeblock(e)}
+        name="markdown"
+      >
         Markdown
       </button>
-      <button className="btn" onClick={(e) => setCodeblock(e)} name="html">
+      <button
+        className="btn preview__btn"
+        onClick={(e) => setCodeblock(e)}
+        name="html"
+      >
         HTML
       </button>
-      <button className="btn" onClick={(e) => setCodeblock(e)} name="css">
+      <button
+        className="btn preview__btn"
+        onClick={(e) => setCodeblock(e)}
+        name="css"
+      >
         CSS
       </button>
     </div>

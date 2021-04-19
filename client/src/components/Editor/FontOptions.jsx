@@ -1,5 +1,6 @@
 import React from 'react'
 import { FONTS } from '../../constants/fonts.jsx'
+import '../../styles/Select.css'
 
 const FontOptions = (props) => {
   const renderFonts = () =>
@@ -14,9 +15,9 @@ const FontOptions = (props) => {
       </option>
     ))
   return (
-    <div>
-      <label>Font</label>
-      <select>{renderFonts()}</select>
+    <div className="font__option">
+      <label className="font__option__label">Font</label>
+      <select className="select-css">{renderFonts()}</select>
     </div>
   )
 }

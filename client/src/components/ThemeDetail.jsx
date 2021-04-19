@@ -76,16 +76,23 @@ const ThemeDetails = (props) => {
       {props.reviewState.reviews_by_theme ? (
         <div>
           <h2>{props.reviewState.reviews_by_theme.theme_name}</h2>
-          <p>{props.reviewState.reviews_by_theme.theme_description}</p>
-          <p>Likes {props.reviewState.reviews_by_theme.likes}</p>
+          <p className="theme__details__description">
+            {props.reviewState.reviews_by_theme.theme_description}
+          </p>
+          {/* <p>Likes {props.reviewState.reviews_by_theme.likes}</p> */}
+          {props.themeState.is_author && (
+            <button onClick={(e) => deleteTheme(e)} className="btn btn__delete">
+              Delete theme
+            </button>
+          )}
           <div>
+            <br />
+            <h2 className="reviews__label">Reviews:</h2>
+
             {props.reviewState.reviews_by_theme.reviews
               ? renderReviews()
               : 'Be the first to review!'}
           </div>
-          {props.themeState.is_author && (
-            <button onClick={(e) => deleteTheme(e)}>Delete theme</button>
-          )}
         </div>
       ) : (
         <div>

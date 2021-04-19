@@ -1,0 +1,22 @@
+.profile__wrapper {
+  margin: 20px 0 100px 0;
+}
+
+.profile__avatar {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  background-color: turquoise;
+}
+.profile__username {
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 5px 20px;
+}
+
+.profile__logout {
+  display: block;
+  margin: 20px 15px;
+}

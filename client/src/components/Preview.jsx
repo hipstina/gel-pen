@@ -42,24 +42,12 @@ const Preview = (props) => {
     comment,
     punct,
     tags,
-    // attr_name,
     func_name,
     bool,
-    // number,
-    // func,
     property,
-    // class_name,
-    // constant,
     selector,
-    // keyword,
     str,
-    // charact,
-    // attr_value,
-    // regx,
-    // variable,
     operator
-    // entity,
-    // url
   } = props.css_styles ? props.css_styles : props.editorState.css_styles
 
   const style_obj = {
@@ -68,29 +56,18 @@ const Preview = (props) => {
     '--comment': `${comment}`,
     '--punct': `${punct}`,
     '--tags': `${tags}`,
-    // '--attr_name': `${attr_name}`,
     '--func_name': `${func_name}`,
     '--bool': `${bool}`,
-    // '--number': `${number}`,
-    // '--func': `${func}`,
     '--property': `${property}`,
-    // '--class_name': `${class_name}`,
-    // '--constant': `${constant}`,
     '--selector': `${selector}`,
-    // '--keyword': `${keyword}`,
     '--str': `${str}`,
-    // '--charact': `${charact}`,
-    // '--attr_value': `${attr_value}`,
-    // '--regx': `${regx}`,
-    // '--variable': `${variable}`,
     '--operator': `${operator}`,
-    // '--entity': `${entity}`,
-    // '--url': `${url}`,
     '--font_type': `${
       props.font_type ? props.font_type : props.editorState.font_type
     }`
   }
-  let codeSnippet = [JSX, JS, PYTHON, MARKDOWN, HTML, CSS]
+
+  let codeSnippet = [JS, JSX, PYTHON, MARKDOWN, HTML, CSS]
 
   const stringifyStyle = () => {
     // CONVERT STYLES OBJ TO STRING
@@ -119,11 +96,26 @@ const Preview = (props) => {
 
   return (
     <div>
-      <PreviewBtns select={select} setSelect={setSelect} />
-      <pre className="preview__wrapper" style={style_obj}>
+      {props.page === 'browse' ? null : props.page === 'editor' ? (
+        <PreviewBtns select={select} setSelect={setSelect} page={props.page} />
+      ) : props.page === 'profile' ? null : (
+        <PreviewBtns select={select} setSelect={setSelect} page={props.page} />
+      )}
+
+      <pre
+        className={
+          props.page === 'browse'
+            ? 'preview__wrapper__browse'
+            : props.page === 'editor'
+            ? 'preview__wrapper__editor'
+            : props.page === 'profile'
+            ? 'preview__wrapper__profile'
+            : 'preview__wrapper__detail'
+        }
+        style={style_obj}
+      >
         <code className="language-js ">
           {select !== 5 ? codeSnippet[select] : stringifyStyle()}
-          {/* {stringifyStyle()} */}
         </code>
       </pre>
     </div>

@@ -1,13 +1,76 @@
-.preview__wrapper {
+.preview__wrapper__editor,
+.preview__wrapper__detail {
   position: absolute;
-  right: 0;
+  right: 450px;
 
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
   border-radius: 0.1rem;
-  width: 55%;
-  height: 100%;
+  width: 860px;
+  height: 70vh;
+  margin: 100px 0;
+}
+
+.previewBtns__wrapper__editor {
+  position: absolute;
+  right: 450px;
+  top: 160px;
+}
+
+.previewBtn__wrapper__detail {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  position: absolute;
+  right: 450px;
+  top: 260px;
+}
+
+.preview__wrapper__editor code {
+  display: block;
+  width: 30ch;
+  word-wrap: break-word;
+}
+
+.preview__wrapper__browse {
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  border-radius: 0.3rem;
+  /* width: 290px;
+  width: 80%; */
+  height: 170px;
   margin: 0;
+}
+
+.preview__wrapper__profile {
+  /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12); */
+  border-radius: 0.1rem;
+  width: 675px;
+  height: 400px;
+  margin: 20px 0;
+}
+
+/* https://css-tricks.com/snippets/css/complete-guide-grid/#fluid-columns-snippet */
+.preview__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 380px);
+  grid-gap: 3rem;
+}
+.preview__grid code {
+  font-size: 10px;
+  overflow-x: hidden;
+}
+
+.preview__grid pre {
+  overflow: hidden;
+  padding: 40px;
+  line-height: 0.6;
+  /* width: 30ch; */
 }

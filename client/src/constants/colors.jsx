@@ -1,7 +1,7 @@
 export const COLOR_TOKENS = [
   ['text', ['Text'], '#cccccc'],
   ['bg', ['Background'], '#2d2d2d'],
-  ['comment', ['Comments', 'DOCTYPE', 'Character data'], '#FFF'],
+  ['comment', ['Comments', 'DOCTYPE', 'Character data'], '#efefef'],
   ['punct', ['Punctuation'], '#cccccc'],
   ['tags', ['Tags', 'Attribute names'], '#e2777a'],
   ['func_name', ['Function names'], '#e2777a'],
