@@ -44,7 +44,7 @@ $ npm i
 
 ![gel-pen component hierarchy diagram](./assets/gel-pen-chd.png)
 
-![gel-pen wireframe](./assets/gel-pen-wireframe.png)
+![gel-pen wireframe](./assets/gel-pen-wireframes.png)
 
 ![gel-pen final](./assets/gel-pen-screenshot.png)
 
