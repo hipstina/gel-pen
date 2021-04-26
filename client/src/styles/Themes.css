@@ -13,3 +13,14 @@
 .theme__details__description {
   font-style: italic;
 }
+
+.theme__detail {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.theme__details__reviews {
+  margin: 0 20px 0 0;
+}

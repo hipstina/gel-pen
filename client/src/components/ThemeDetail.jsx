@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { DeleteThemeById, IsThemeAuthor } from '../store/actions/ThemeActions'
 import { GetReviewsByTheme } from '../store/actions/ReviewActions'
 import Preview from '../components/Preview'
+import ReviewForm from '../components/ReviewForm'
 
 const mapStateToProps = (state) => {
   return {
@@ -65,7 +66,7 @@ const ThemeDetails = (props) => {
   }
 
   return (
-    <div>
+    <div className="theme__detail">
       {props.themeState.is_deleted ? (
         <h3>This theme has been deleted!</h3>
       ) : (
@@ -85,7 +86,7 @@ const ThemeDetails = (props) => {
               Delete theme
             </button>
           )}
-          <div>
+          <div className="theme__details__reviews">
             <br />
             <h2 className="reviews__label">Reviews:</h2>
 
@@ -93,6 +94,7 @@ const ThemeDetails = (props) => {
               ? renderReviews()
               : 'Be the first to review!'}
           </div>
+          <ReviewForm {...props} />
         </div>
       ) : (
         <div>
