@@ -75,7 +75,7 @@ const ThemeDetails = (props) => {
         )
       )}
       {props.reviewState.reviews_by_theme ? (
-        <div>
+        <div className="theme__details__sidebar">
           <h2>{props.reviewState.reviews_by_theme.theme_name}</h2>
           <p className="theme__details__description">
             {props.reviewState.reviews_by_theme.theme_description}
