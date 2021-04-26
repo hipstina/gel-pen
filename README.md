@@ -1,6 +1,6 @@
 # Gel Pen 
-![gel pen banner](./assets/gel-pen-banner.png)
-## Project status: In development
+
+## Project status: Launched April 26, 2021
 ### By: Christina Padilla
 
 ### [Portfolio](https://christinapadilla.com) | [GitHub](https://github.com/hipstina) | [LinkedIn](https://linkedin.com/in/hipstina)
