@@ -26,17 +26,20 @@ a {
 
   /* background-color: #bbbaba; */
   /* border-bottom: 2.5px dotted #949393; */
-  text-decoration: wavy underline;
+  /* text-decoration: wavy underline;
   -webkit-text-decoration-style: wavy;
   -moz-text-decoration-style: wavy;
-  text-decoration-style: wavy;
+  text-decoration-style: wavy; */
   text-decoration-color: #8b8b8b;
   text-decoration-thickness: 1px;
-
+  /* background-color: rgba(180, 204, 26, 0.8); */
+  border-bottom: 1.5px solid #949393;
+  border-bottom: 1.5px solid rgba(214, 240, 51, 0.9);
   text-transform: uppercase;
   letter-spacing: 0.08rem;
   font-size: 14px;
   margin: 0 15px 0 0;
+  height: 16px;
   padding: 8px;
 }
 .inactive {
@@ -44,6 +47,7 @@ a {
 }
 
 .logo__ {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
+  margin: -5px 35px 15px 0;
 }

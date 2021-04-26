@@ -39,6 +39,7 @@ const PreviewBtns = (props) => {
           : 'previewBtn__wrapper__detail'
       }
     >
+      <span className="prevBtn__label">Language: </span>
       <button
         className="btn preview__btn"
         onClick={(e) => setCodeblock(e)}

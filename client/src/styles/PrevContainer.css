@@ -9,14 +9,14 @@
     0 100px 80px rgba(0, 0, 0, 0.12);
   border-radius: 0.1rem;
   width: 860px;
-  height: 70vh;
+  height: 900px;
   margin: 100px 0;
 }
 
 .previewBtns__wrapper__editor {
   position: absolute;
   right: 450px;
-  top: 160px;
+  top: 180px;
 }
 
 .previewBtn__wrapper__detail {
@@ -25,7 +25,7 @@
   justify-content: flex-end;
   position: absolute;
   right: 450px;
-  top: 260px;
+  top: 290px;
 }
 
 .preview__wrapper__editor code {

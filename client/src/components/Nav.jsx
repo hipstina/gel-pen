@@ -16,6 +16,9 @@ const Nav = (props) => {
         <NavLink exact to="/" className="logo__">
           Gel Pen
         </NavLink>
+        <NavLink exact to="/" className="nav__item">
+          Editor
+        </NavLink>
         <NavLink to="/browse" className="nav__item">
           Browse Themes
         </NavLink>
@@ -29,6 +32,9 @@ const Nav = (props) => {
       <nav className="nav__wrapper">
         <NavLink exact to="/" className="logo__">
           Gel Pen
+        </NavLink>
+        <NavLink exact to="/" className="nav__item">
+          Editor
         </NavLink>
         <NavLink to="/login" className="nav__item">
           Login
