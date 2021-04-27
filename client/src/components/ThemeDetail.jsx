@@ -29,7 +29,11 @@ const ThemeDetails = (props) => {
     props.getTheme(props.match.params.theme_id)
     isThemeAuthor()
     // eslint-disable-next-line
-  }, [props.reviewState.review_submitted, props.match.params.theme_id])
+  }, [
+    props.themeState.themes,
+    props.reviewState.review_submitted,
+    props.match.params.theme_id
+  ])
 
   const renderReviews = () => {
     return props.reviewState.reviews_by_theme.reviews ? (
@@ -51,17 +55,19 @@ const ThemeDetails = (props) => {
   }
 
   const isThemeAuthor = () => {
-    let selectedTheme = props.themeState.themes.filter((theme) =>
-      theme.id === parseInt(props.match.params.theme_id) ? true : false
-    )
+    if (props.themeState.themes.length > 0) {
+      let selectedTheme = props.themeState.themes.filter((theme) =>
+        theme.id === parseInt(props.match.params.theme_id) ? true : false
+      )
 
-    if (selectedTheme[0]) {
-      let author =
-        selectedTheme[0].user_id === props.userState.current_user_id
-          ? true
-          : false
+      if (selectedTheme[0]) {
+        let author =
+          selectedTheme[0].user_id === props.userState.current_user_id
+            ? true
+            : false
 
-      props.isThemeAuthor(author)
+        props.isThemeAuthor(author)
+      }
     }
   }
 
