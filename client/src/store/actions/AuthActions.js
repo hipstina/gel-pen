@@ -36,7 +36,7 @@ export const LoginUserByUsername = (req) => async (dispatch) => {
 
     dispatch({
       type: SET_CURRENT_USER,
-      payload: user.user.id
+      payload: user
     })
     return true
   } catch (err) {

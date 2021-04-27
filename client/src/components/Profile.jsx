@@ -28,9 +28,9 @@ const Profile = (props) => {
     <div className="profile__wrapper">
       <div className="profile__avatar"></div>
       <span className="profile__username">
-        {props.authState.username
-          ? props.authState.username
-          : props.userState.selected_user_data.username}
+        {props.userState.selected_user_data
+          ? props.userState.selected_user_data.username
+          : '...'}
       </span>
       {props.authState.authenticated && (
         <button onClick={logOut} className="btn profile__logout btn__redirect">
